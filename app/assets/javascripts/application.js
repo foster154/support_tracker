@@ -14,5 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require chosen-jquery
+//= require bootstrap-datepicker
+//= require jquery.tooltipster.min
 //= require turbolinks
 //= require_tree .
