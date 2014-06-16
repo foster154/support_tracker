@@ -8,10 +8,4 @@ $(document).ready(function(){
 		format: 'yyyy-mm-dd',
 		autoclose: true
 		});
-
-	$('#refreshcustomers').click(function() {
-		$("#log_customer_id").load()
-	});
-		
-	
 });
