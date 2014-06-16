@@ -1,0 +1,12 @@
+<h1 class="top-pad">Edit Customer</h1>
+<div class="col-sm-4 col-sm-offset-4 top-pad">
+	<%= link_to "KidCheck Customers Tab", "https://go.kidcheck.com/admin/customers/default.aspx", :target => "_blank", class: "float-right" %>
+</div>
+
+<%= render 'form' %>
+
+<div class="row">
+	<div class="col-sm-4 col-sm-offset-4">
+		<%= link_to 'Cancel', customers_path, class: "btn btn-default btn-xs float-right top-pad-10" %>
+	</div>
+</div>

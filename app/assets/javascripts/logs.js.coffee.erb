@@ -1,0 +1,12 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
+jQuery ->
+	$('.tooltip').tooltipster
+		theme: 'tooltipster-punk'
+	$('#log_tag_ids').chosen()
+	$('#log_customer_id').chosen()
+	$('#modal_create_cust').click ->
+		$('#newCustomerModal').modal('hide')
+		$("#log_customer_id").append("<option value='198'>Hello</option>")

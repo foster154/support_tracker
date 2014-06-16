@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Case type:</strong>
+  <%= @log.case_type %>
+</p>
+
+<p>
+  <strong>Person:</strong>
+  <%= @log.person %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @log.customer_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @log.description %>
+</p>
+
+<p>
+  <strong>Length:</strong>
+  <%= @log.length %>
+</p>
+
+<p>
+  <strong>Followup:</strong>
+  <%= @log.followup %>
+</p>
+
+<p>
+  <strong>Followup note:</strong>
+  <%= @log.followup_note %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @log.user_id %>
+</p>
+
+<p>
+  <strong>App note:</strong>
+  <%= @log.app_note %>
+</p>
+
+<%= link_to 'Edit', edit_log_path(@log) %> |
+<%= link_to 'Back', logs_path %>

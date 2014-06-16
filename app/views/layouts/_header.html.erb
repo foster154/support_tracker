@@ -1,0 +1,21 @@
+<nav class="navbar navbar-fixed-top navbar-default">
+	<div class="navbar-inner custom-header">
+		<div class="container">
+			<%= link_to "Support Tracker", root_path, class: "navbar-brand", id: "logo" %>
+			<nav>
+				<ul class="nav navbar-nav pull-right">
+					<% if user_signed_in? %>
+						<li><%= link_to "Cases", root_path %></li>
+						<li><%= link_to "Dashboard", "#" %></li>
+						<li><%= link_to "Customers", customers_path %></li>
+						<li><%= link_to "Tags", tags_path %></li>
+						<li><%= link_to "My Account", edit_user_registration_path %></li>
+						<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+			        <% else %>
+			        	<li><%= link_to "Login", new_user_session_path %></li>
+					<% end %>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</nav>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  case_type: 1
+  person: MyString
+  customer_id: 1
+  description: MyText
+  length: 1
+  followup: 1
+  followup_note: MyText
+  user_id: 1
+  app_note: 1
+
+two:
+  case_type: 1
+  person: MyString
+  customer_id: 1
+  description: MyText
+  length: 1
+  followup: 1
+  followup_note: MyText
+  user_id: 1
+  app_note: 1

@@ -1,0 +1,52 @@
+<tr>
+  <td><%= log.time.strftime("%I:%M %p") %></td>
+  <td>
+    <%= "Phone" if log.case_type == 1 %>
+    <%= "Email" if log.case_type == 2 %>
+    <%= "Chat"  if log.case_type == 3 %>
+  </td>
+  <td class="col-person"><%= log.person %></td>
+  <td>
+    <% if log.customer %>
+      <%= link_to log.customer.name, customer_path(log.customer) %> 
+      <% if log.customer.kc_cust_id? %>
+        (<%= link_to log.customer.kc_cust_id, "https://go.kidcheck.com/admin/customers/default.aspx?id=#{log.customer.kc_cust_id}", :target => "_blank" %>)
+      <% else %>
+        (<%= link_to "####", "https://go.kidcheck.com/admin/customers/default.aspx", :target => "_blank" %>)
+      <% end %>
+    <% else %>
+      (none)
+    <% end %>
+  </td>
+  <td><%= log.description %></td>
+  <td class="center"><%= log.length %></td>
+  <td>
+    <% log.tags.any? %>
+      <ul class="tags">
+      <% log.tags.each do |tag| %>
+        <li><%= tag.name %></li><br />
+      <% end %>
+      </ul>
+  </td>
+  <td class="center">
+    <% if log.followup == 2 %>
+      <div class="highlight-yellow tooltip" title="<%= log.followup_note %>">Y</div>
+    <% end %>  
+    <%= "-"   if log.followup == 1 %>
+    <%= "c"   if log.followup == 3 %>
+  </td>
+  <td>
+    <%= "Mark"   if log.user_id == 1 %>
+    <%= "John"   if log.user_id == 2 %>
+    <%= "Jake"   if log.user_id == 3 %>
+  </td>
+  <td class="center">
+    <% if log.app_note == 2 %>
+      <span class="highlight-red">NY</span>
+    <% end %>
+    <%= "Y"   if log.app_note == 1 %>
+    <%= "CF"  if log.app_note == 3 %>
+    <%= "-"   if log.app_note == 4 %>
+  </td>
+  <td><%= link_to 'Edit', edit_log_path(log, date: @date), class: "btn btn-default btn-xs", :'data-no-turbolink' => "true" %></td>
+</tr>

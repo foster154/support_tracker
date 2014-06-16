@@ -1,0 +1,42 @@
+<h1 class="top-pad">Customers</h1>
+<div class="col-sm-10 col-sm-offset-1">
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="center">KidCheck ID</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Zip</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td class="center">
+          <% if customer.kc_cust_id %>
+          <%= link_to customer.kc_cust_id, "https://go.kidcheck.com/admin/customers/default.aspx?id=#{customer.kc_cust_id}", :target => "_blank" %>
+          <% end %>
+        </td>
+        <td><%= customer.address %></td>
+        <td><%= customer.city %></td>
+        <td><%= customer.state %></td>
+        <td><%= customer.zip %></td>
+        <td>
+          <%= link_to 'Show', customer %> |
+          <%= link_to 'Edit', edit_customer_path(customer) %> |
+          <%= link_to 'Delete', customer, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Customer', new_customer_path, class: "btn btn-primary" %>
+</div>

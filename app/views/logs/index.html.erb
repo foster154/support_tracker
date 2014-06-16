@@ -1,0 +1,34 @@
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1">
+
+<div class="top-pad float-right">
+<%= form_tag logs_path, method: 'get' do %>
+  <%= text_field_tag :date %>
+  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+
+<h1><%= @date.to_date.strftime("%A - %b %d, %Y") %> </h1>
+<table class="table table-striped">
+
+  <%= render 'logs/partials/log_table_header' %>
+
+  <tbody>
+    <% @logs.each do |log| %>
+      
+      <%= render 'logs/partials/log_table_row', log: log %>
+
+    <% end %>
+  </tbody>
+</table>
+<div class="case-count">
+  Case Count: <%= @logs.count %><br />
+  Total Time: <%= @total_time %>
+</div>
+
+<br>
+
+    <%= link_to 'New Case', new_log_path(date: @date), class: "btn btn-primary center", :'data-no-turbolink' => "true" %>
+</div>
+</div>
+

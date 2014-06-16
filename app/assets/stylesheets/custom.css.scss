@@ -1,0 +1,194 @@
+@import "bootstrap";
+
+/* Variables */
+
+$grayLight: #777;
+
+/* universal */
+
+html {
+  overflow-y: scroll;
+}
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* Spacing & Alignment */
+
+.center {
+  text-align: center;
+}
+
+.float-right {
+	float: right;
+}
+
+.top-pad {
+	margin-top: 35px;
+}
+
+.top-pad-10 {
+	margin-top: 10px;
+}
+
+/* Typography */
+
+h1 {
+	text-align: center;
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+	clear: both;
+}
+
+/* Header */
+
+.container { height: 5em; }
+
+.custom-header {
+	background-color: #B2D583;
+	border-bottom: 5px solid #8CC147;
+	vertical-align: middle;
+}
+
+#logo {
+	color: white;
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+	font-size: 32px;
+	padding-top: 25px;
+}
+
+.nav li {
+		margin-top:10px;
+		font-size: 1.1em;
+}
+
+/* Buttons */
+
+.btn {
+  a:link {color:#FF0000;}
+  a:visited {color:#00FF00;}
+}
+
+.btn-spacer {
+	margin: 50px 0 0 20px;
+}
+
+.delete-btn {
+	float: right;
+	margin: 50px 50px 0 0;
+}
+
+/* Forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #CFCFCF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 7px 0;
+  /* @include box_sizing; */
+} 
+
+.control-label {
+	margin-top: 8px;
+}
+
+.form-spacer {
+	margin-bottom: 40px;
+	display: block;
+	clear: both;
+}
+
+/* Cases table */
+
+.col-time {
+	width: 85px;
+}
+
+.col-person {
+	white-space: nowrap;
+}
+
+.col-tags {
+	width: 100px;
+}
+
+.highlight-red {
+	background-color: #FF8A8A;
+	border-radius: 2px;
+	padding: 3px;
+}
+.highlight-yellow {
+	background-color: #FFF154;
+	border: 1px dashed #858585;
+	border-radius: 4px;
+	padding: 3px 5px;
+	cursor: default;
+}
+
+.tooltip {
+	opacity: 1;
+}
+
+.tooltipster-punk {
+	border-radius: 5px; 
+	border-bottom: 3px solid #8CC147;
+	background: #2a2a2a;
+	color: #fff;
+}
+.tooltipster-punk .tooltipster-content {
+	font-size: 14px;
+	line-height: 16px;
+	padding: 8px 10px;
+}
+
+.case-count {
+	float: right;
+	font-style: italic;
+	color: $grayLight;
+}
+
+/* tags */
+
+.chosen-choices {
+  border: 1px solid #CFCFCF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 7px 0;
+}
+
+.tags {
+	ul {
+	}
+
+	li {
+		list-style-type: none;
+		margin: 2px 0 2px -40px;
+		padding: 2px 4px 2px 4px;
+		font-size: 0.8em;
+		color: white;
+		background-color: $grayLight;
+		border-radius:4px;
+		display: inline-block;
+		white-space: nowrap;
+	}
+
+	li:before {
+		background: #fff;
+    	width: 6px;
+    	height: 6px;
+    	content: "";
+    	display: inline-block;
+    	border-radius: 20px;
+    	margin: 0 5px 0 0;
+	}
+}

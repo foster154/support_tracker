@@ -1,0 +1,116 @@
+
+<div class="row">
+  <div class="col-sm-offset-4">
+  <%= bootstrap_form_for(@log, date: @date, layout: :default) do |f| %>
+    <% if @log.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@log.errors.count, "error") %> prohibited this log from being saved:</h2>
+
+        <ul>
+        <% @log.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-3">
+    <%= f.text_field :date, layout: :horizontal, id: "case_date", value: @set_date %>
+
+    <%= f.text_field :time, layout: :horizontal, value: @set_time %>
+  
+    <%= f.select :case_type, [
+      ['Phone', '1'],
+      ['Email', '2'],
+      ['Chat',  '3'],
+    ], label: "Type", layout: :horizontal %>
+  </div>
+
+  <div class="col-sm-3 col-sm-offset-1">
+
+    <%= f.text_field :person, layout: :default %>
+
+    <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal" class="float-right">(New Customer)</a>
+
+    <%= f.select :customer_id,
+      @customerlist,
+      { include_blank: true }
+    %>
+
+    <%= f.text_area :description, layout: :default, rows: 6 %>
+
+    <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {}, {multiple: true} %>
+
+  </div>
+
+  <div class="col-sm-3 col-sm-offset-1">
+    <%= f.number_field :length, layout: :horizontal  %>
+
+    <%= f.select :followup, [
+      ['-', '1'],
+      ['Yes', '2'],
+      ['Complete',  '3'],
+    ], label: "FU", layout: :horizontal  %>
+
+    <%= f.text_area :followup_note, label: "FU Note", layout: :horizontal  %>
+
+    <%= f.select :app_note, [
+      ["NY (Not yet)",  '2'],
+      ["Y (Yes)",   '1'],
+      ["CF (Can't find",  '3'],
+      ["- (Not possible)",   '4'],
+    ], layout: :horizontal  %>
+
+    <div class="form-spacer"><br /></div>
+
+    <%= f.select(:user_id, User.all.map {|user| [user.name, user.id]}, prompt: true) %>
+
+    <div class="form-submit-btns">
+      <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
+      <%= link_to 'Cancel', logs_path(date: @date), class: "btn btn-xs btn-default btn-spacer" %>
+      <%= link_to 'Delete', @log, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger btn-spacer" %>
+    </div>
+
+  </div>
+</div>
+
+
+<div class="row center">
+    <br />
+      
+    </div>
+<% end %>
+</div>
+
+<div id="newCustomerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="/modal/show">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">New Customer</h4>
+      </div>
+      <div class="modal-body">
+      <%= bootstrap_form_for(Customer.new, remote: true, html: {"data-type" => :json}) do |f| %>
+        <%= f.text_field :name, placeholder: "Organization", hide_label: true %>
+
+        <%= f.number_field :kc_cust_id, placeholder: "KidCheck ID", hide_label: true %>
+
+        <%= f.text_field :address, placeholder: "Address", hide_label: true %>
+
+        <%= f.text_field :city, placeholder: "City", hide_label: true %>
+
+        <%= f.text_field :state, placeholder: "State", hide_label: true %>
+
+        <%= f.number_field :zip, placeholder: "Zip", hide_label: true %>
+      </div>
+        
+        <div class="modal-footer">
+          <%= f.submit class: "btn btn-primary float-right", id: "modal_create_cust" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
