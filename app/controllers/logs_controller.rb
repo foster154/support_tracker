@@ -21,7 +21,7 @@ class LogsController < ApplicationController
     @log = Log.new
     @user = current_user
     @date = params[:date] || Date.today
-    @set_time = Time.now.strftime("%I:%M %p")
+    @set_time = Time.zone.now.strftime("%I:%M %p")
     @set_date = @date || Date.today.strftime("%F")
     @customerlist = Customer.all.map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
   end
@@ -69,14 +69,6 @@ class LogsController < ApplicationController
       format.html { redirect_to logs_url }
       format.json { head :no_content }
     end
-  end
-
-  def refreshcustomers
-    @customerlist = Customer.all.map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
-
-    respond_to do |format|
-      format.js
-   end
   end
 
   private
