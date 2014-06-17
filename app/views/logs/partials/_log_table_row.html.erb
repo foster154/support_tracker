@@ -36,9 +36,7 @@
     <%= "c"   if log.followup == 3 %>
   </td>
   <td>
-    <%= "Mark"   if log.user_id == 1 %>
-    <%= "John"   if log.user_id == 2 %>
-    <%= "Jake"   if log.user_id == 3 %>
+    <%= log.user.name %>
   </td>
   <td class="center">
     <% if log.app_note == 2 %>
