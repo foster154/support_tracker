@@ -7,7 +7,7 @@ class LogsController < ApplicationController
   def index
     # @date = Date.today.strftime("%F")
     @date = params[:date] || Date.today
-    @logs = Log.where("date = ?", @date).order(:time)
+    @logs = Log.where("date = ?", @date).order('time DESC')
     @total_time = Log.where("date = ?", @date).sum :length
   end
 
