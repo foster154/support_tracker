@@ -33,7 +33,12 @@
 
     <%= f.text_field :person, layout: :default %>
 
-    <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal" class="float-right">(New Customer)</a>
+    <div class="float-right">
+      <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal">New Customer</a>
+      <% if @log.customer %>
+         | <%= link_to "Edit Customer", edit_customer_url(@log.customer.id), target: "_blank" %>
+      <% end %>
+    </div>
 
     <%= f.select :customer_id,
       @customerlist,
@@ -60,7 +65,7 @@
     <%= f.select :app_note, [
       ["NY (Not yet)",  '2'],
       ["Y (Yes)",   '1'],
-      ["CF (Can't find",  '3'],
+      ["CF (Can't find)",  '3'],
       ["- (Not possible)",   '4'],
     ], layout: :horizontal  %>
 
