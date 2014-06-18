@@ -1,7 +1,7 @@
 <h1 class="top-pad"><%= current_user.name %></h1>
 
 <div class="row">
-	<div class="col-md-6">
+	<div class="col-md-5 col-md-offset-1">
 		<h2 class="center">Follow Ups</h2>
 
 		<table class="table table-striped">
@@ -27,4 +27,13 @@
 			</tbody>
 		</table>
 	</div>
+	<div class="col-md-5 col-md-offset-1">
+		<%= render 'users/partials/pricing_widget' %>
+	</div>
+</div>
+
+<br />
+
+<div class="row">
+	<%= render 'users/partials/dashboard_widgets' %>
 </div>
