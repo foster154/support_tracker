@@ -21,7 +21,7 @@
 					<td><%= log.person %></td>
 					<td><%= log.customer ? log.customer.name : "(none)" %></td>
 					<td><%= log.followup_note %></td>
-					<td><%= link_to "edit", edit_log_path(log), class: "btn btn-sm btn-default"%></td>
+					<td><%= link_to "edit", edit_log_path(log), class: "btn btn-sm btn-default", :'data-no-turbolink' => "true" %></td>
 				</tr>
 				<% end %>
 			</tbody>

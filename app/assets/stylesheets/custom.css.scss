@@ -84,6 +84,19 @@ h1 {
 		font-size: 1.1em;
 }
 
+.alert-badge {
+	position: absolute;
+	margin: 3px 0 0 88px;
+	font-size: 10px;
+	text-align: center;
+	color: white;
+	background: #E34242;
+	width: 18px;
+	height: 18px;
+	border: 2px solid white;
+	border-radius: 100%;
+}
+
 /* Buttons */
 
 .btn {
