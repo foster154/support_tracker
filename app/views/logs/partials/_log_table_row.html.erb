@@ -1,6 +1,6 @@
 <tr>
-  <td><%= log.time.strftime("%I:%M %p") %></td>
-  <td>
+  <td class="center"><%= log.time.strftime("%I:%M %p") %></td>
+  <td class="center">
     <%= "Phone" if log.case_type == 1 %>
     <%= "Email" if log.case_type == 2 %>
     <%= "Chat"  if log.case_type == 3 %>
@@ -28,14 +28,14 @@
       <% end %>
       </ul>
   </td>
-  <td class="center">
+  <td>
     <% if log.followup == 2 %>
       <div class="highlight-yellow tooltip" title="<%= log.followup_note %>">Y</div>
     <% end %>  
     <%= "-"   if log.followup == 1 %>
     <%= "c"   if log.followup == 3 %>
   </td>
-  <td>
+  <td class="center">
     <% if log.user %>
       <%= log.user.name %>
     <% end %>
