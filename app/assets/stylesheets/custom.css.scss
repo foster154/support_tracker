@@ -24,6 +24,10 @@ textarea {
 
 /* Spacing & Alignment */
 
+.clear {
+	clear: both;
+}
+
 .center {
   text-align: center;
 }
@@ -160,7 +164,6 @@ input, textarea, select, .uneditable-input {
 }
 
 .case-count {
-	float: right;
 	font-style: italic;
 	color: $grayLight;
 }

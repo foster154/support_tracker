@@ -9,9 +9,15 @@
 <% end %>
 </div>
 
-<%= link_to 'New Case', new_log_path(date: @date), class: "btn btn-primary center top-pad50 float-left", :'data-no-turbolink' => "true" %>
+<div class="top-pad50">
+  <%= render 'logs/partials/new_case_btn' %>
+</div>
 
 <h1><%= @date.to_date.strftime("%A - %b %d, %Y") %> </h1>
+<div class="case-count center">
+  <%= @logs.count %> cases, <%= @total_time %> minutes
+</div>
+<br />
 <table class="table table-striped">
 
   <%= render 'logs/partials/log_table_header' %>
@@ -24,14 +30,10 @@
     <% end %>
   </tbody>
 </table>
-<div class="case-count">
-  Case Count: <%= @logs.count %><br />
-  Total Time: <%= @total_time %>
-</div>
 
-<br>
+<%= render 'logs/partials/new_case_btn' %>
 
-    <%= link_to 'New Case', new_log_path(date: @date), class: "btn btn-primary center", :'data-no-turbolink' => "true" %>
+    
 </div>
 </div>
 

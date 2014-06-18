@@ -1,0 +1,30 @@
+<h1 class="top-pad"><%= current_user.name %></h1>
+
+<div class="row">
+	<div class="col-md-6">
+		<h2 class="center">Follow Ups</h2>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>Person</th>
+					<th>Org</th>
+					<th>Followup Note</th>
+					<th> </th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @logs_with_followup.each do |log| %>
+				<tr>
+					<td><%= log.date %></td>
+					<td><%= log.person %></td>
+					<td><%= log.customer ? log.customer.name : "(none)" %></td>
+					<td><%= log.followup_note %></td>
+					<td><%= link_to "edit", edit_log_path(log), class: "btn btn-sm btn-default"%></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -6,7 +6,7 @@
 				<ul class="nav navbar-nav pull-right">
 					<% if user_signed_in? %>
 						<li><%= link_to "Cases", root_path %></li>
-						<li><%= link_to "Dashboard", "#" %></li>
+						<li><%= link_to "Dashboard", user_path(current_user) %></li>
 						<li><%= link_to "Customers", customers_path %></li>
 						<li><%= link_to "Tags", tags_path %></li>
 						<li><%= link_to "My Account", edit_user_registration_path %></li>

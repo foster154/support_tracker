@@ -3,6 +3,7 @@ SupportTracker::Application.routes.draw do
   resources :customers
 
   devise_for :users
+  resources :users
   resources :logs
   resources :tags
 
