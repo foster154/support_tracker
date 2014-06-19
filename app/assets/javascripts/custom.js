@@ -4,8 +4,9 @@ $(document).ready(function(){
 		autoclose: true
 		});
 	
-	$('#case_date').datepicker({
+	$('.datepicker').datepicker({
 		format: 'yyyy-mm-dd',
 		autoclose: true
 		});
+
 });

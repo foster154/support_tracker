@@ -158,9 +158,10 @@ input, textarea, select, .uneditable-input {
 	border-radius: 4px;
 	padding: 3px 5px;
 	cursor: default;
+	z-index: 1;
 }
 
-.tooltip {
+.tooltipster {
 	opacity: 1;
 }
 

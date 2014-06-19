@@ -9,9 +9,7 @@
 <% end %>
 </div>
 
-<div class="top-pad50">
-  <%= render 'logs/partials/new_case_btn' %>
-</div>
+<%= link_to 'New Case', new_log_path(date: @date), class: "btn btn-primary btn-lg center float-left top-pad50", :'data-no-turbolink' => "true" %>
 
 <h1><%= @date.to_date.strftime("%A - %b %d, %Y") %> </h1>
 <div class="case-count center">
@@ -30,8 +28,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= render 'logs/partials/new_case_btn' %>
 
     
 </div>

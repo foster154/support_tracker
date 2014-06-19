@@ -1,0 +1,39 @@
+<h2 class="center">Follow Ups</h2>
+
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Date</th>
+			<th>Person</th>
+			<th>Org</th>
+			<th>Followup Note</th>
+			<th>Due Date</th>
+			<th> </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @logs_with_followup.each do |log| %>
+			<% if log.followup_due_date.to_date > Date.today %>
+			<tr class="due-future">
+			<% else %>
+			<tr>
+			<% end %>
+				<td>
+					<% if log.followup_due_date.to_date > Date.today %>
+					<% elsif log.followup_due_date.to_date == Date.today %>
+					<% elsif log.followup_due_date.to_date < Date.today %>
+					<% end %>
+				</td>
+				<td><%= log.date.to_date.strftime("%b %d") %></td>
+				<td><%= log.person %></td>
+				<td><%= log.customer ? log.customer.name : "(none)" %></td>
+				<td><%= log.followup_note %></td>
+				<td>
+					<%= log.followup_due_date ? log.followup_due_date.to_date.strftime("%b %d") : "(none)" %>
+				</td>
+				<td><%= link_to "edit", edit_log_path(log), class: "btn btn-sm btn-default", :'data-no-turbolink' => "true" %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="col-sm-3">
-    <%= f.text_field :date, layout: :horizontal, id: "case_date", value: @set_date %>
+    <%= f.text_field :date, layout: :horizontal, id: "case_date", class: "datepicker", value: @set_date %>
 
     <%= f.text_field :time, layout: :horizontal, value: @set_time %>
   
@@ -52,26 +52,29 @@
   </div>
 
   <div class="col-sm-3 col-sm-offset-1">
-    <%= f.number_field :length, layout: :horizontal  %>
 
     <%= f.select :followup, [
       ['-', '1'],
       ['Yes', '2'],
       ['Complete',  '3'],
-    ], label: "FU", layout: :horizontal  %>
+    ], label: "Followup", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
 
-    <%= f.text_area :followup_note, label: "FU Note", layout: :horizontal  %>
+    <%= f.text_area :followup_note, label: "Followup Note", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
+
+    <%= f.text_field :followup_due_date, class: "datepicker", label: "Due Date", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
+
+    <div class="form-spacer"><br /></div>
+
+    <%= f.number_field :length, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
+
+    <%= f.select(:user_id, User.all.map {|user| [user.name, user.id]}, layout: :horizontal, prompt: true, label_col: "col-sm-3", control_col: "col-sm-9") %>
 
     <%= f.select :app_note, [
       ["NY (Not yet)",  '2'],
       ["Y (Yes)",   '1'],
       ["CF (Can't find)",  '3'],
       ["- (Not possible)",   '4'],
-    ], layout: :horizontal  %>
-
-    <div class="form-spacer"><br /></div>
-
-    <%= f.select(:user_id, User.all.map {|user| [user.name, user.id]}, prompt: true) %>
+    ], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
 
     <div class="form-submit-btns">
       <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>

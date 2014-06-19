@@ -30,7 +30,7 @@
   </td>
   <td>
     <% if log.followup == 2 %>
-      <div class="highlight-yellow tooltip" title="<%= log.followup_note %>">Y</div>
+      <div class="tooltipster highlight-yellow" title="<%= log.followup_note %>">Y</div>
     <% end %>  
     <%= "-"   if log.followup == 1 %>
     <%= "c"   if log.followup == 3 %>

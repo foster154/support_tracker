@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
   before_action :followup_count
 
 	def followup_count
-		@followup_count = Log.where(user_id: current_user.id, followup: 2).count
+		if current_user
+			@followup_count = Log.where(user_id: current_user.id, followup: 2).count
+		end
 	end
 end

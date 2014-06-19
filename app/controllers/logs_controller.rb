@@ -79,6 +79,6 @@ class LogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def log_params
-      params.require(:log).permit(:case_type, :person, :customer_id, :description, :length, :followup, :followup_note, :user_id, :app_note, :date, :time, :tag_ids => [])
+      params.require(:log).permit(:case_type, :person, :customer_id, :description, :length, :followup, :followup_note, :followup_due_date, :user_id, :app_note, :date, :time, :tag_ids => [])
     end
 end
