@@ -3,13 +3,13 @@
 <table class="table table-striped">
 	<thead>
 		<tr>
-			<th></th>
 			<th>Date</th>
 			<th>Person</th>
 			<th>Org</th>
 			<th>Followup Note</th>
 			<th>Due Date</th>
-			<th> </th>
+			<th></th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
@@ -17,24 +17,31 @@
 			<% if log.followup_due_date %>
 				<% if log.followup_due_date.to_date > Date.today %>
 				<tr class="due-future">
+				<% elsif log.followup_due_date.to_date < Date.today %>
+				<tr class="due-past">
 				<% else %>
 				<tr>
 				<% end %>
 			<% end %>
-				<td>
-					<% if log.followup_due_date %>
-						<% if log.followup_due_date.to_date > Date.today %>
-						<% elsif log.followup_due_date.to_date == Date.today %>
-						<% elsif log.followup_due_date.to_date < Date.today %>
-						<% end %>
-					<% end %>
-				</td>
 				<td><%= log.date.to_date.strftime("%b %d") %></td>
 				<td><%= log.person %></td>
 				<td><%= log.customer ? log.customer.name : "(none)" %></td>
 				<td><%= log.followup_note %></td>
 				<td>
 					<%= log.followup_due_date ? log.followup_due_date.to_date.strftime("%b %d") : "(none)" %>
+				</td>
+				<td>
+					<% if log.followup_due_date %>
+						<% if log.followup_due_date.to_date > Date.today %>
+							<i class="glyphicon glyphicon-leaf glyph-lg glyph-green"></i>
+						<% elsif log.followup_due_date.to_date == Date.today %>
+							<i class="glyphicon glyphicon-fire glyph-lg glyph-orange"></i>
+						<% elsif log.followup_due_date.to_date < Date.today %>
+							<i class="glyphicon glyphicon-fire glyph-lg glyph-red"></i>
+						<% end %>
+					<% else %>
+						<i class="glyphicon glyphicon-question-sign glyph-lg"></i>
+					<% end %>
 				</td>
 				<td><%= link_to "edit", edit_log_path(log), class: "btn btn-sm btn-default", :'data-no-turbolink' => "true" %></td>
 			</tr>
