@@ -7,9 +7,13 @@ class ApplicationController < ActionController::Base
 
 	def followup_count
 		if current_user
-			@followup_count = Log.where(followup: 2,
+			needs_immediate_followup = Log.where(followup: 2,
 										:followup_due_date => Date.today.last_month.beginning_of_month..Date.today,
 										user_id: current_user.id).count
+			followup_date_not_set = Log.where(followup: 2,
+											  user_id: current_user.id,
+											  followup_due_date: nil).count
+			@followup_count = needs_immediate_followup + followup_date_not_set
 		end
 	end
 end
