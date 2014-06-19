@@ -14,15 +14,19 @@
 	</thead>
 	<tbody>
 		<% @logs_with_followup.each do |log| %>
-			<% if log.followup_due_date.to_date > Date.today %>
-			<tr class="due-future">
-			<% else %>
-			<tr>
+			<% if log.followup_due_date %>
+				<% if log.followup_due_date.to_date > Date.today %>
+				<tr class="due-future">
+				<% else %>
+				<tr>
+				<% end %>
 			<% end %>
 				<td>
-					<% if log.followup_due_date.to_date > Date.today %>
-					<% elsif log.followup_due_date.to_date == Date.today %>
-					<% elsif log.followup_due_date.to_date < Date.today %>
+					<% if log.followup_due_date %>
+						<% if log.followup_due_date.to_date > Date.today %>
+						<% elsif log.followup_due_date.to_date == Date.today %>
+						<% elsif log.followup_due_date.to_date < Date.today %>
+						<% end %>
 					<% end %>
 				</td>
 				<td><%= log.date.to_date.strftime("%b %d") %></td>
