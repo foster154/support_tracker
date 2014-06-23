@@ -52,6 +52,12 @@ textarea {
 	margin-top: 50px;
 }
 
+.wrapper {
+	width: 100%;
+	text-align: center;
+	clear: both;
+}
+
 /* Typography */
 
 h1 {
@@ -113,6 +119,13 @@ h1 {
 	margin: 50px 50px 0 0;
 }
 
+.transparent-btn {
+	border: none;
+	background: none;
+	margin: 0;
+	padding: 0;
+}
+
 /* Forms */
 
 input, textarea, select, .uneditable-input {
@@ -131,6 +144,42 @@ input, textarea, select, .uneditable-input {
 	margin-bottom: 40px;
 	display: block;
 	clear: both;
+}
+
+/* Cases date on index page */
+.index-case-title {
+	clear: both;
+	margin: 0 auto 0 auto;
+	display: inline-block;
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+}
+
+.index-case-date {
+
+	font-size: 2.5em;
+	float: left;
+}
+
+.yesterday-btn {
+	float: left;
+	margin: 0 15px 0 0;
+	font-size: 2.5em;
+	color: #428bca;
+}
+
+.tomorrow-btn {
+	float: left;
+	margin-left: 15px;
+	font-size: 2.5em;
+	color: #428bca;
+}
+
+.case-count {
+	clear: both;
+	font-style: italic;
+	color: $grayLight;
+	text-align: center;
 }
 
 /* Cases table */
@@ -176,11 +225,6 @@ input, textarea, select, .uneditable-input {
 	font-size: 14px;
 	line-height: 16px;
 	padding: 8px 10px;
-}
-
-.case-count {
-	font-style: italic;
-	color: $grayLight;
 }
 
 /* tags */
