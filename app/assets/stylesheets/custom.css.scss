@@ -146,6 +146,25 @@ input, textarea, select, .uneditable-input {
 	clear: both;
 }
 
+/* Set Date for logs/index */
+
+.date-select {
+	float: right;
+	margin:35px 0 0 0;
+}
+
+.date-select-icon {
+	
+}
+
+
+.today-btn {
+	float: right;
+	margin: 85px -222px 0 0;
+	font-size: .8em;
+	color: #428bca;
+}
+
 /* Cases date on index page */
 .index-case-title {
 	clear: both;

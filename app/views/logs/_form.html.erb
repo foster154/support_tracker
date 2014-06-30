@@ -33,17 +33,17 @@
 
     <%= f.text_field :person, layout: :default %>
 
+    <%= f.select :customer_id,
+      @customerlist,
+      { include_blank: true }
+    %>
+
     <div class="float-right">
       <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal">New Customer</a>
       <% if @log.customer %>
          | <%= link_to "Edit Customer", edit_customer_url(@log.customer.id), target: "_blank" %>
       <% end %>
     </div>
-
-    <%= f.select :customer_id,
-      @customerlist,
-      { include_blank: true }
-    %>
 
     <%= f.text_area :description, layout: :default, rows: 6 %>
 

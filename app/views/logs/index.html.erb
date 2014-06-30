@@ -2,12 +2,20 @@
 <div class="row">
 <div class="col-sm-10 col-sm-offset-1">
 
-<div class="top-pad float-right">
-<%= form_tag logs_path, method: 'get' do %>
-  <%= text_field_tag :date %>
-  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
-<% end %>
-</div>
+	<div class="date-select">
+	<%= form_tag logs_path, method: 'get' do %>
+	  <%= text_field_tag :date, @date, class: "date-select-icon" %>
+	  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
+	<% end %>
+	</div>
+
+	<div class="today-btn">
+		<%= form_tag logs_path, method: 'get' do %>
+		  <%= hidden_field_tag :date, Date.today %>
+		  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
+		<% end %>
+	</div>
+
 
 <%= link_to 'New Case', new_log_path(date: @date), class: "btn btn-primary btn-lg center float-left top-pad50", :'data-no-turbolink' => "true" %>
 
