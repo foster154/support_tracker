@@ -79,7 +79,9 @@
     <div class="form-submit-btns">
       <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
       <%= link_to 'Cancel', logs_path(date: @date), class: "btn btn-xs btn-default btn-spacer" %>
-      <%= link_to 'Delete', @log, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-xs btn-danger btn-spacer" %>
+      <% if params[:id] %>
+      <%= link_to 'Delete', @log, method: :delete, data: { confirm: 'Are you sure you want to PERMANENTLY delete this case?' }, class: "btn btn-xs btn-danger btn-spacer" %>
+      <% end %>
     </div>
 
   </div>
