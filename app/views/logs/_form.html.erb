@@ -26,12 +26,12 @@
       ['Phone', '1'],
       ['Email', '2'],
       ['Chat',  '3'],
-    ], label: "Type", layout: :horizontal %>
+    ], label: "Type", layout: :horizontal%>
   </div>
 
   <div class="col-sm-3 col-sm-offset-1">
 
-    <%= f.text_field :person, layout: :default %>
+    <%= f.text_field :person, layout: :default, autofocus: true %>
 
     <%= f.select :customer_id,
       @customerlist,
@@ -64,6 +64,14 @@
       ["- (Not possible)",   '4'],
     ], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
 
+    <div class="form-submit-btns">
+      <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
+      <%= link_to 'Cancel', logs_path(date: @date), class: "btn btn-xs btn-default btn-spacer" %>
+      <% if params[:id] %>
+      <%= link_to 'Delete', @log, method: :delete, data: { confirm: 'Are you sure you want to PERMANENTLY delete this case?' }, class: "btn btn-xs btn-danger btn-spacer" %>
+      <% end %>
+    </div>
+
     <div class="form-spacer"><br /></div>
 
     <%= f.select :followup, [
@@ -75,14 +83,6 @@
     <%= f.text_area :followup_note, label: "Followup Note", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
 
     <%= f.text_field :followup_due_date, class: "datepicker", label: "Due Date", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
-
-    <div class="form-submit-btns">
-      <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
-      <%= link_to 'Cancel', logs_path(date: @date), class: "btn btn-xs btn-default btn-spacer" %>
-      <% if params[:id] %>
-      <%= link_to 'Delete', @log, method: :delete, data: { confirm: 'Are you sure you want to PERMANENTLY delete this case?' }, class: "btn btn-xs btn-danger btn-spacer" %>
-      <% end %>
-    </div>
 
   </div>
 </div>
