@@ -5,7 +5,6 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    # @date = Date.today.strftime("%F")
     @date = params[:date] || Date.today
     @logs = Log.where("date = ?", @date).order('time DESC')
     @total_time = Log.where("date = ?", @date).sum :length
