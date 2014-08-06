@@ -7,7 +7,10 @@ SupportTracker::Application.routes.draw do
   resources :logs
   resources :tags
 
-  get '/logs/refreshcustomers', to: 'logs#refreshcustomers'
+  match '/metrics',             to: 'metrics#weekdays',     via: 'get'
+  match '/metrics/weekdays',    to: 'metrics#weekdays',     via: 'get'
+  match '/metrics/sundays',     to: 'metrics#sundays',      via: 'get'
+  match '/metrics/monthly',     to: 'metrics#monthly',      via: 'get'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

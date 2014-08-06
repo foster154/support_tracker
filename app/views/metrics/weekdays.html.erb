@@ -1,0 +1,64 @@
+<% provide(:title, 'Weekday Metrics') %>
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1">
+
+<div class="date-select">
+<%= form_tag metrics_weekdays_path, method: 'get' do %>
+  <%= text_field_tag :date, @date, class: "date-select-icon" %>
+  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+
+<% unless @date.to_date == Date.today %> 
+<div class="today-btn">
+	<%= form_tag metrics_weekdays_path, method: 'get' do %>
+	  <%= hidden_field_tag :date, Date.today %>
+	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
+	<% end %>
+</div>
+<% end %>
+
+<h1 class="top-pad">Weekday Metrics</h1>
+<h3 class="center grey"><%= @monday.to_date.strftime("%b %d") %> to <%= @friday.to_date.strftime("%b %d, %Y") %> </h3>
+
+<table class="table metrics-table">
+	<thead>
+		<tr>
+			<th> </th>
+			<th>Monday<br />(<%= @monday.strftime("%b %d, %Y") %>)</th>
+			<th>Tuesday<br />(<%= @tuesday.strftime("%b %d, %Y") %>)</th>
+			<th>Wednesday<br />(<%= @wednesday.strftime("%b %d, %Y") %>)</th>
+			<th>Thursday<br />(<%= @thursday.strftime("%b %d, %Y") %>)</th>
+			<th>Friday<br />(<%= @friday.strftime("%b %d, %Y") %>)</th>
+			<th>Weekday Total</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<tr class="highlight">
+			<th>Total Cases</th>
+			<td><%= get_case_count(@monday) %> / <%= get_minutes_count(@monday) %></td>
+			<td><%= get_case_count(@tuesday) %> / <%= get_minutes_count(@tuesday) %></td>
+			<td><%= get_case_count(@wednesday) %> / <%= get_minutes_count(@wednesday) %></td>
+			<td><%= get_case_count(@thursday) %> / <%= get_minutes_count(@thursday) %></td>
+			<td><%= get_case_count(@friday) %> / <%= get_minutes_count(@friday) %></td>
+			<th><%= get_case_count_sum(@monday, @tuesday, @wednesday, @thursday, @friday) %> / 
+			<%= get_minutes_count_sum(@monday, @tuesday, @wednesday, @thursday, @friday) %></th>
+		</tr>
+		<% @users.each do |user| %>
+		<tr>
+			<th><%= user.name %></th>
+			<td><%= get_user_case_count(user, @monday) %> / <%= get_user_minutes_count(user, @monday) %></td>
+			<td><%= get_user_case_count(user, @tuesday) %> / <%= get_user_minutes_count(user, @tuesday) %></td>
+			<td><%= get_user_case_count(user, @wednesday) %> / <%= get_user_minutes_count(user, @wednesday) %></td>
+			<td><%= get_user_case_count(user, @thursday) %> / <%= get_user_minutes_count(user, @thursday) %></td>
+			<td><%= get_user_case_count(user, @friday) %> / <%= get_user_minutes_count(user, @friday) %></td>
+			<th><%= get_user_case_count_sum(user, @monday, @tuesday, @wednesday, @thursday, @friday) %> / 
+			<%= get_user_minutes_count_sum(user, @monday, @tuesday, @wednesday, @thursday, @friday)%></th>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+</div>
+</div>

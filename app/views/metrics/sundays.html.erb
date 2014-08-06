@@ -1,0 +1,108 @@
+<% provide(:title, 'Sunday Metrics') %>
+
+<div class="row">
+<div class="col-sm-10 col-sm-offset-1">
+
+<div class="date-select">
+<%= form_tag metrics_sundays_path, method: 'get' do %>
+  <%= text_field_tag :date, @date, class: "date-select-icon" %>
+  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+
+<% unless @date.to_date == Date.today %> 
+<div class="today-btn">
+	<%= form_tag metrics_sundays_path, method: 'get' do %>
+	  <%= hidden_field_tag :date, Date.today %>
+	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
+	<% end %>
+</div>
+<% end %>
+
+<h1>Sunday Metrics</h1>
+<h3 class="center grey"><%= @sunday4.to_date.strftime("%b %d") %> to <%= @sunday1.to_date.strftime("%b %d, %Y") %></h3>
+
+<table class="table table-bordered metrics-table">
+	<thead>
+		<tr>
+			<th>Date</th>
+			<th>6:00<br />to<br />6:30</th>
+			<th>6:30<br />to<br />7:00</th>
+			<th>7:00<br />to<br />7:30</th>
+			<th>7:30<br />to<br />8:00</th>
+			<th>8:00<br />to<br />8:30</th>
+			<th>8:30<br />to<br />9:00</th>
+			<th>9:00<br />to<br />9:30</th>
+			<th>9:30<br />to<br />10:00</th>
+			<th>10:00<br />to<br />10:30</th>
+			<th>10:30<br />to<br />11:00</th>
+			<th>11:00<br />to<br />11:30</th>
+			<th>11:30<br />to<br />12:00</th>
+			<th>After<br />12</th>
+			<th class="highlight">Total<br />Cases</th>
+			<th class="highlight">Total<br />Min</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @sundays.each do |sunday| %>
+		<tr>
+			<th><%= sunday.to_date.strftime("%A, %b %d") %></th>
+			<td><%= time_range_case_count(sunday, "06:00:00", "06:29:59") %></td>
+			<td><%= time_range_case_count(sunday, "06:30:00", "06:59:59") %></td>
+			<td><%= time_range_case_count(sunday, "07:00:00", "07:29:59") %></td>
+			<td><%= time_range_case_count(sunday, "07:30:00", "07:59:59") %></td>
+			<td><%= time_range_case_count(sunday, "08:00:00", "08:29:59") %></td>
+			<td><%= time_range_case_count(sunday, "08:30:00", "08:59:59") %></td>
+			<td><%= time_range_case_count(sunday, "09:00:00", "09:29:59") %></td>
+			<td><%= time_range_case_count(sunday, "09:30:00", "09:59:59") %></td>
+			<td><%= time_range_case_count(sunday, "10:00:00", "10:29:59") %></td>
+			<td><%= time_range_case_count(sunday, "10:30:00", "10:59:59") %></td>
+			<td><%= time_range_case_count(sunday, "11:00:00", "11:29:59") %></td>
+			<td><%= time_range_case_count(sunday, "11:30:00", "11:59:59") %></td>
+			<td><%= time_range_case_count(sunday, "12:00:00", "23:59:59") %></td>
+			<th class="highlight"><%= get_case_count(sunday) %></th>
+			<th class="highlight"><%= get_minutes_count(sunday) %></th>
+		</tr>
+		<% end %>
+		<tr class="highlight">
+			<th>Total</th>
+			<th><%= time_range_case_count_sum("06:00:00", "06:29:59") %></th>
+			<th><%= time_range_case_count_sum("06:30:00", "06:59:59") %></th>
+			<th><%= time_range_case_count_sum("07:00:00", "07:29:59") %></th>
+			<th><%= time_range_case_count_sum("07:30:00", "07:59:59") %></th>
+			<th><%= time_range_case_count_sum("08:00:00", "08:29:59") %></th>
+			<th><%= time_range_case_count_sum("08:30:00", "08:59:59") %></th>
+			<th><%= time_range_case_count_sum("09:00:00", "09:29:59") %></th>
+			<th><%= time_range_case_count_sum("09:30:00", "09:59:59") %></th>
+			<th><%= time_range_case_count_sum("10:00:00", "10:29:59") %></th>
+			<th><%= time_range_case_count_sum("10:30:00", "10:59:59") %></th>
+			<th><%= time_range_case_count_sum("11:00:00", "11:29:59") %></th>
+			<th><%= time_range_case_count_sum("11:30:00", "11:59:59") %></th>
+			<th><%= time_range_case_count_sum("12:00:00", "23:59:59") %></th>
+			<th><%= get_sunday_case_count_sum(@sunday1, @sunday2, @sunday3, @sunday4) %></th>
+			<th><%= get_sunday_minutes_count_sum(@sunday1, @sunday2, @sunday3, @sunday4) %></th>
+		</tr>
+		<tr class="highlight">
+			<th>Average</th>
+			<th><%= time_range_case_count_average("06:00:00", "06:29:59") %></th>
+			<th><%= time_range_case_count_average("06:30:00", "06:59:59") %></th>
+			<th><%= time_range_case_count_average("07:00:00", "07:29:59") %></th>
+			<th><%= time_range_case_count_average("07:30:00", "07:59:59") %></th>
+			<th><%= time_range_case_count_average("08:00:00", "08:29:59") %></th>
+			<th><%= time_range_case_count_average("08:30:00", "08:59:59") %></th>
+			<th><%= time_range_case_count_average("09:00:00", "09:29:59") %></th>
+			<th><%= time_range_case_count_average("09:30:00", "09:59:59") %></th>
+			<th><%= time_range_case_count_average("10:00:00", "10:29:59") %></th>
+			<th><%= time_range_case_count_average("10:30:00", "10:59:59") %></th>
+			<th><%= time_range_case_count_average("11:00:00", "11:29:59") %></th>
+			<th><%= time_range_case_count_average("11:30:00", "11:59:59") %></th>
+			<th><%= time_range_case_count_average("12:00:00", "23:59:59") %></th>
+			<th><%= (get_sunday_case_count_sum(@sunday1, @sunday2, @sunday3, @sunday4))/4.0 %></th>
+			<th><%= (get_sunday_minutes_count_sum(@sunday1, @sunday2, @sunday3, @sunday4))/4.0 %></th>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+</div>

@@ -39,6 +39,10 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'chosen-rails'
 
+group :development do
+	gem 'better_errors'
+end
+
 group :production do
 	gem 'rails_12factor'
 end
