@@ -21,7 +21,6 @@ class LogsController < ApplicationController
     @user = current_user
     @date = params[:date] || Date.today
     @set_time = Time.zone.now.strftime("%I:%M %p")
-    @set_date = @date || Date.today.strftime("%F")
     @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
   end
 
