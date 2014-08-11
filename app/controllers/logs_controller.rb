@@ -20,6 +20,7 @@ class LogsController < ApplicationController
     @log = Log.new
     @user = current_user
     @date = params[:date] || Date.today
+    @set_date = Date.today
     @set_time = Time.zone.now.strftime("%I:%M %p")
     @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
   end

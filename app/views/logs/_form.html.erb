@@ -18,7 +18,7 @@
 
 <div class="row">
   <div class="col-sm-3">
-    <%= f.text_field :date, layout: :horizontal, id: "case_date", class: "datepicker", value: Date.today %>
+    <%= f.text_field :date, layout: :horizontal, id: "case_date", class: "datepicker", value: @set_date %>
 
     <%= f.text_field :time, layout: :horizontal, value: @set_time %>
   
@@ -65,7 +65,6 @@
     ], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
 
     <div class="form-submit-btns">
-      <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
       <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
       <%= link_to 'Cancel', logs_path(date: @date), class: "btn btn-xs btn-default btn-spacer" %>
       <% if params[:id] %>
