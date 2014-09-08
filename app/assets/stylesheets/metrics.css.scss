@@ -5,6 +5,59 @@
 	}
 }
 
-.metrics-table {
+.metrics-month {
+	margin: 30px auto;
+	font-family: 'Lato', sans-serif;
+	th {
+		text-align: center;
+		width: 175px;
+		padding: 10px 0;
 
+	}
+	td {
+		height: 140px;
+		column-width: 175px;
+		border: 1px solid #CCC;
+		border-radius: 3px;
+		text-align: top;
+	}
+
+	.mm-datebox {
+		float: left;
+		position: absolute;
+		padding: 8px;
+		margin-top: -70px;
+		text-align: center;
+		color: #999;
+		.datebox-month {
+			font-size: 12px;
+			color: #999;
+		}
+		.datebox-day {
+			font-size: 20px;
+			font-weight: 400;
+			margin-top: -4px;
+		}
+	}
+
+	.mm-caseinfo {
+		position: absolute;
+		width: 175px;
+		margin-top: -50px;
+	}
+
+	.mm-casecount {
+		margin-top: 10px;
+		font-size: 55px;
+		text-align: center;
+	}
+
+	.mm-mincount {
+		font-size: 16px;
+		text-align: center;
+		color: #777;
+	}
+	.highlight-diff-month {
+		background-color: #FDFFD4;
+	}
 }

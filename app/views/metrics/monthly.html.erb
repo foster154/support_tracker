@@ -1,3 +1,152 @@
-<h1 class="top-pad">Monthly Metrics</h1>
+<div class="col-xs-12">
 
-<p class="center top-pad">Coming soon to a support tracker near you.</p>
+<div class="date-select">
+<%= form_tag metrics_monthly_path, method: 'get' do %>
+  <%= text_field_tag :date, @date, class: "date-select-icon" %>
+  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
+<% end %>
+</div>
+
+<% unless @date.to_date == Date.today %> 
+<div class="today-btn">
+	<%= form_tag metrics_monthly_path, method: 'get' do %>
+	  <%= hidden_field_tag :date, Date.today %>
+	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
+	<% end %>
+</div>
+<% end %>
+
+	<h1 class="top-pad">Monthly Metrics</h1>
+
+	<table class="metrics-month">
+		<thead>
+			<tr>
+				<th>Sunday</th>
+				<th>Monday</th>
+				<th>Tuesday</th>
+				<th>Wednesday</th>
+				<th>Thursday</th>
+				<th>Friday</th>
+				<th>Saturday</th>
+			</tr>
+		</thead>
+
+		<tbody>
+
+			<!-- WEEK 1 -->
+			<tr>
+				<% @week1.each do |day| %>
+				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
+				<td>
+				<% else %>
+				<td class="highlight-diff-month">
+				<% end %>
+					<div class="mm-datebox">
+						<div class="datebox-month"><%= day.strftime("%b") %></div>
+						<div class="datebox-day"><%= day.strftime("%d") %></div>
+					</div>
+					<% if get_case_count(day) > 0 %>
+					<div class="mm-caseinfo">
+						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
+					</div>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+
+			<!-- WEEK 2 -->
+			<tr>
+				<% @week2.each do |day| %>
+				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
+				<td>
+				<% else %>
+				<td class="highlight-diff-month">
+				<% end %>
+					<div class="mm-datebox">
+						<div class="datebox-month"><%= day.strftime("%b") %></div>
+						<div class="datebox-day"><%= day.strftime("%d") %></div>
+					</div>
+
+					<% if get_case_count(day) > 0 %>
+					<div class="mm-caseinfo">
+						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
+					</div>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+
+			<!-- WEEK 3 -->
+			<tr>
+				<% @week3.each do |day| %>
+				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
+				<td>
+				<% else %>
+				<td class="highlight-diff-month">
+				<% end %>
+					<div class="mm-datebox">
+						<div class="datebox-month"><%= day.strftime("%b") %></div>
+						<div class="datebox-day"><%= day.strftime("%d") %></div>
+					</div>
+
+					<% if get_case_count(day) > 0 %>
+					<div class="mm-caseinfo">
+						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
+					</div>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+
+			<!-- WEEK 4 -->
+			<tr>
+				<% @week4.each do |day| %>
+				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
+				<td>
+				<% else %>
+				<td class="highlight-diff-month">
+				<% end %>
+					<div class="mm-datebox">
+						<div class="datebox-month"><%= day.strftime("%b") %></div>
+						<div class="datebox-day"><%= day.strftime("%d") %></div>
+					</div>
+
+					<% if get_case_count(day) > 0 %>
+					<div class="mm-caseinfo">
+						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
+					</div>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+
+			<!-- WEEK 5 -->
+			<tr>
+				<% @week5.each do |day| %>
+				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
+				<td>
+				<% else %>
+				<td class="highlight-diff-month">
+				<% end %>
+					<div class="mm-datebox">
+						<div class="datebox-month"><%= day.strftime("%b") %></div>
+						<div class="datebox-day"><%= day.strftime("%d") %></div>
+					</div>
+
+					<% if get_case_count(day) > 0 %>
+					<div class="mm-caseinfo">
+						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
+					</div>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+
+		</tbody>
+	</table>
+</div>
