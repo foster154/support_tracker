@@ -15,19 +15,39 @@
 	<% end %>
 </div>
 <% end %>
+	
+<div class="wrapper">
+<div class="next-prev-wrapper">
+	<div class="prev-btn">
+		<%= form_tag metrics_monthly_path, method: 'get' do %>
+		  <%= hidden_field_tag :date, (@date.to_date - 1.month) %>
+		  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
+		<% end %>
+	</div>
 
-	<h1 class="top-pad">Monthly Metrics</h1>
+	<div class="next-prev-title"><%= @date.to_date.strftime("%b %Y") %></div>
+	
+	<% if @date.to_date != Date.today %>
+	<div class="next-btn">
+		<%= form_tag metrics_monthly_path, method: 'get' do %>
+		  <%= hidden_field_tag :date, (@date.to_date + 1.month) %>
+		  <%= submit_tag ">", name: nil, class: "transparent-btn" %>
+		<% end %>
+	</div>
+	<% end %>
+</div>
+</div>
 
 	<table class="metrics-month">
 		<thead>
 			<tr>
+				<th>Sunday</th>
 				<th>Monday</th>
 				<th>Tuesday</th>
 				<th>Wednesday</th>
 				<th>Thursday</th>
 				<th>Friday</th>
 				<th>Saturday</th>
-				<th>Sunday</th>
 			</tr>
 		</thead>
 
@@ -127,6 +147,29 @@
 			<!-- WEEK 5 -->
 			<tr>
 				<% @week5.each do |day| %>
+				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
+				<td>
+				<% else %>
+				<td class="highlight-diff-month">
+				<% end %>
+					<div class="mm-datebox">
+						<div class="datebox-month"><%= day.strftime("%b") %></div>
+						<div class="datebox-day"><%= day.strftime("%d") %></div>
+					</div>
+
+					<% if get_case_count(day) > 0 %>
+					<div class="mm-caseinfo">
+						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
+					</div>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+
+			<!-- WEEK 6 -->
+			<tr>
+				<% @week6.each do |day| %>
 				<% if day.strftime("%b") == @date.to_date.strftime("%b") %>
 				<td>
 				<% else %>

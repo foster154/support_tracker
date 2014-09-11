@@ -27,11 +27,12 @@ class MetricsController < ApplicationController
 		@date = params[:date] || Date.today
 
 		# current week
-		@week5day1 = @date.to_date.beginning_of_week
-		@week4day1 = @week5day1.advance(days: -7)
-		@week3day1 = @week5day1.advance(days: -14)
-		@week2day1 = @week5day1.advance(days: -21)
-		@week1day1 = @week5day1.advance(days: -28)
+		@week1day1 = @date.to_date.beginning_of_month.beginning_of_week(:sunday)
+		@week2day1 = @week1day1.advance(days: 7)
+		@week3day1 = @week1day1.advance(days: 14)
+		@week4day1 = @week1day1.advance(days: 21)
+		@week5day1 = @week1day1.advance(days: 28)
+		@week6day1 = @week1day1.advance(days: 35)
 
 		@week1 = [ 	@week1day1, 
 					@week1day1.advance(days: 1), 
@@ -72,6 +73,14 @@ class MetricsController < ApplicationController
 					@week5day1.advance(days: 4), 
 					@week5day1.advance(days: 5), 
 					@week5day1.advance(days: 6) ]
+
+		@week6 = [ 	@week6day1, 
+					@week6day1.advance(days: 1), 
+					@week6day1.advance(days: 2), 
+					@week6day1.advance(days: 3), 
+					@week6day1.advance(days: 4), 
+					@week6day1.advance(days: 5), 
+					@week6day1.advance(days: 6) ]
 
 	end
 

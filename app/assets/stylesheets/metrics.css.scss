@@ -15,8 +15,7 @@
 
 	}
 	td {
-		height: 140px;
-		column-width: 175px;
+		height: 110px;
 		border: 1px solid #CCC;
 		border-radius: 3px;
 		text-align: top;
@@ -26,7 +25,7 @@
 		float: left;
 		position: absolute;
 		padding: 8px;
-		margin-top: -70px;
+		margin-top: -58px;
 		text-align: center;
 		color: #999;
 		.datebox-month {
@@ -48,11 +47,12 @@
 
 	.mm-casecount {
 		margin-top: 10px;
-		font-size: 55px;
+		font-size: 46px;
 		text-align: center;
 	}
 
 	.mm-mincount {
+		margin-top: -5px;
 		font-size: 16px;
 		text-align: center;
 		color: #777;

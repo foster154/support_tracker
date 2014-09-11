@@ -183,7 +183,7 @@ input, textarea, select, .uneditable-input {
 }
 
 /* Cases date on index page */
-.index-case-title {
+.next-prev-wrapper {
 	clear: both;
 	margin: 0 auto 0 auto;
 	display: inline-block;
@@ -191,20 +191,20 @@ input, textarea, select, .uneditable-input {
 	font-weight: 900;
 }
 
-.index-case-date {
+.next-prev-title {
 
 	font-size: 2.5em;
 	float: left;
 }
 
-.yesterday-btn {
+.prev-btn {
 	float: left;
 	margin: 0 15px 0 0;
 	font-size: 2.5em;
 	color: #428bca;
 }
 
-.tomorrow-btn {
+.next-btn {
 	float: left;
 	margin-left: 15px;
 	font-size: 2.5em;
