@@ -19,10 +19,31 @@
 </div>
 <% end %>
 
-<h1>Sunday Metrics</h1>
-<h3 class="center grey"><%= @sunday4.to_date.strftime("%b %d") %> to <%= @sunday1.to_date.strftime("%b %d, %Y") %></h3>
+<h3>Sunday Metrics</h3>
 
-<table class="table table-bordered metrics-table">
+<div class="wrapper">
+<div class="next-prev-wrapper">
+	<div class="prev-btn">
+		<%= form_tag metrics_sundays_path, method: 'get' do %>
+		  <%= hidden_field_tag :date, (@date.to_date - 1.month) %>
+		  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
+		<% end %>
+	</div>
+
+	<div class="next-prev-title"><%= @date.to_date.strftime("%b %Y") %></div>
+	
+	<% if @date.to_date != Date.today %>
+	<div class="next-btn">
+		<%= form_tag metrics_sundays_path, method: 'get' do %>
+		  <%= hidden_field_tag :date, (@date.to_date + 1.month) %>
+		  <%= submit_tag ">", name: nil, class: "transparent-btn" %>
+		<% end %>
+	</div>
+	<% end %>
+</div>
+</div>
+
+<table class="metrics-sunday">
 	<thead>
 		<tr>
 			<th>Date</th>
@@ -39,15 +60,15 @@
 			<th>11:00<br />to<br />11:30</th>
 			<th>11:30<br />to<br />12:00</th>
 			<th>After<br />12</th>
-			<th class="highlight">Total<br />Cases</th>
-			<th class="highlight">Total<br />Min</th>
+			<th class="highlight col-line-left">Total<br />Cases</th>
+			<th class="highlight">Total<br />Minutes</th>
 		</tr>
 	</thead>
 
 	<tbody>
 		<% @sundays.each do |sunday| %>
 		<tr>
-			<th><%= sunday.to_date.strftime("%A, %b %d") %></th>
+			<td class="emphasis"><%= sunday.to_date.strftime("%b %d") %></td>
 			<td><%= time_range_case_count(sunday, "06:00:00", "06:29:59") %></td>
 			<td><%= time_range_case_count(sunday, "06:30:00", "06:59:59") %></td>
 			<td><%= time_range_case_count(sunday, "07:00:00", "07:29:59") %></td>
@@ -61,11 +82,11 @@
 			<td><%= time_range_case_count(sunday, "11:00:00", "11:29:59") %></td>
 			<td><%= time_range_case_count(sunday, "11:30:00", "11:59:59") %></td>
 			<td><%= time_range_case_count(sunday, "12:00:00", "23:59:59") %></td>
-			<th class="highlight"><%= get_case_count(sunday) %></th>
-			<th class="highlight"><%= get_minutes_count(sunday) %></th>
+			<td class="col-line-left emphasis"><%= get_case_count(sunday) %></td>
+			<td class="emphasis"><%= get_minutes_count(sunday) %></td>
 		</tr>
 		<% end %>
-		<tr class="highlight">
+<!-- 		<tr class="highlight">
 			<th>Total</th>
 			<th><%= time_range_case_count_sum("06:00:00", "06:29:59") %></th>
 			<th><%= time_range_case_count_sum("06:30:00", "06:59:59") %></th>
@@ -82,7 +103,9 @@
 			<th><%= time_range_case_count_sum("12:00:00", "23:59:59") %></th>
 			<th><%= get_sunday_case_count_sum(@sunday1, @sunday2, @sunday3, @sunday4) %></th>
 			<th><%= get_sunday_minutes_count_sum(@sunday1, @sunday2, @sunday3, @sunday4) %></th>
-		</tr>
+		</tr> -->
+		
+<!-- 		<% if @date.to_date.strftime("%b") != Date.today.strftime("%b") %>
 		<tr class="highlight">
 			<th>Average</th>
 			<th><%= time_range_case_count_average("06:00:00", "06:29:59") %></th>
@@ -101,6 +124,7 @@
 			<th><%= (get_sunday_case_count_sum(@sunday1, @sunday2, @sunday3, @sunday4))/4.0 %></th>
 			<th><%= (get_sunday_minutes_count_sum(@sunday1, @sunday2, @sunday3, @sunday4))/4.0 %></th>
 		</tr>
+		<% end %> -->
 	</tbody>
 </table>
 

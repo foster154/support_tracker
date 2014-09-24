@@ -15,12 +15,17 @@ class MetricsController < ApplicationController
 	def sundays
 		@date = params[:date] || Date.today
 
-		@sunday1 = @date.to_date.end_of_week
-		@sunday2 = @sunday1.advance(days: -7)
-		@sunday3 = @sunday2.advance(days: -7)
-		@sunday4 = @sunday3.advance(days: -7)
+		@sunday1 = @date.to_date.beginning_of_month.advance(days: 7).beginning_of_week(:sunday)
+		@sunday2 = @sunday1.advance(days: 7)
+		@sunday3 = @sunday2.advance(days: 7)
+		@sunday4 = @sunday3.advance(days: 7)
+		@sunday5 = @sunday4.advance(days: 7)
 
-		@sundays = [@sunday4, @sunday3, @sunday2, @sunday1]
+		if @sunday5.to_date.strftime("%b") == @date.to_date.strftime("%b")
+			@sundays = [ @sunday1, @sunday2, @sunday3, @sunday4, @sunday5 ]
+		else
+			@sundays = [ @sunday1, @sunday2, @sunday3, @sunday4 ]
+		end
 	end
 
 	def monthly

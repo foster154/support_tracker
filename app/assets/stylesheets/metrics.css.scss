@@ -1,7 +1,27 @@
-.metrics-table {
+@import "variables";
+
+.metrics-sunday {
 	margin-top: 30px;
-	th, td {
+	font-family: 'Lato', sans-serif;
+	font-weight: 300;
 	text-align: center;
+	th {
+		text-align: center;
+		height: 75px;
+		width: 100px;
+		border-bottom: 1px solid $lt-gray;
+	}
+	td {
+		height: 75px;
+		font-size: 20px;
+		color: $gray;
+	}
+	.emphasis {
+		font-weight: 500;
+		color: black;
+	}
+	.col-line-left {
+		border-left: 1px solid $lt-gray;
 	}
 }
 
