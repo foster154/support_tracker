@@ -57,4 +57,8 @@ module MetricsHelper
 		get_minutes_count(date1) + get_minutes_count(date2) + get_minutes_count(date3) + get_minutes_count(date4)
 	end
 
+	def get_missed_case_count(date)
+		Log.where("date = ?", date).where("case_type = ?", "4").count
+	end
+
 end
