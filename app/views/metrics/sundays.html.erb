@@ -95,13 +95,13 @@
 	<% if @number_of_sundays == 4 %>
 		<li>Cases per Sunday: <span><%= get_sunday_case_count_sum_4 / @number_of_sundays.to_f %></span></li>
 		<li>Minutes per Sunday: <span><%= get_sunday_minutes_count_sum_4 / @number_of_sundays %></span></li>
-		<li>Minutes per case: <span><%= get_sunday_minutes_count_sum_4 / get_sunday_case_count_sum_4 %></span></li>
-		<li>Missed calls per Sunday: <span><%= get_missed_case_count_sum_4 / @number_of_sundays %></span></li>
+		<li>Minutes per case: <span><%= get_sunday_minutes_count_sum_4 / get_sunday_case_count_sum_4.to_f %></span></li>
+		<li>Missed calls per Sunday: <span><%= get_missed_case_count_sum_4 / @number_of_sundays.to_f %></span></li>
 	<% else %>
 		<li>Cases per Sunday: <span><%= get_sunday_case_count_sum_5 / @number_of_sundays.to_f %></span></li>
 		<li>Minutes per Sunday: <span><%= get_sunday_minutes_count_sum_5 / @number_of_sundays %></span></li>
-		<li>Minutes per case: <span><%= get_sunday_minutes_count_sum_5 / get_sunday_case_count_sum_5 %></span></li>
-		<li>Missed calls per Sunday: <span><%= get_missed_case_count_sum_5 / @number_of_sundays %></span></li>
+		<li>Minutes per case: <span><%= get_sunday_minutes_count_sum_5 / get_sunday_case_count_sum_5.to_f %></span></li>
+		<li>Missed calls per Sunday: <span><%= get_missed_case_count_sum_5 / @number_of_sundays.to_f %></span></li>
 	<% end %>
 </ul>
 
