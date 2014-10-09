@@ -1,6 +1,11 @@
 <tr>
   <td class="center"><%= log.time.strftime("%I:%M %p") %></td>
+
+  <% if log.case_type == 4 %>
+    <td class="center highlight-missed-call">
+  <% else %>
   <td class="center">
+  <% end %>
     <%= "Phone" if log.case_type == 1 %>
     <%= "Email" if log.case_type == 2 %>
     <%= "Chat"  if log.case_type == 3 %>
