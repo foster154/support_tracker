@@ -49,16 +49,32 @@ module MetricsHelper
 		(Log.where(date: @sunday1, time: (time1)..(time2)).count + Log.where(date: @sunday2, time: (time1)..(time2)).count + Log.where(date: @sunday3, time: (time1)..(time2)).count + Log.where(date: @sunday4, time: (time1)..(time2)).count)/4.0
 	end
 
-	def get_sunday_case_count_sum(date1, date2, date3, date4)
-		get_case_count(date1) + get_case_count(date2) + get_case_count(date3) + get_case_count(date4)
+	def get_sunday_case_count_sum_5
+		get_case_count(@sunday1) + get_case_count(@sunday2) + get_case_count(@sunday3) + get_case_count(@sunday4) + get_case_count(@sunday5)
 	end
 
-	def get_sunday_minutes_count_sum(date1, date2, date3, date4)
-		get_minutes_count(date1) + get_minutes_count(date2) + get_minutes_count(date3) + get_minutes_count(date4)
+	def get_sunday_case_count_sum_4
+		get_case_count(@sunday1) + get_case_count(@sunday2) + get_case_count(@sunday3) + get_case_count(@sunday4)
+	end
+
+	def get_sunday_minutes_count_sum_5
+		get_minutes_count(@sunday1) + get_minutes_count(@sunday2) + get_minutes_count(@sunday3) + get_minutes_count(@sunday4) + get_minutes_count(@sunday5)
+	end
+
+	def get_sunday_minutes_count_sum_4
+		get_minutes_count(@sunday1) + get_minutes_count(@sunday2) + get_minutes_count(@sunday3) + get_minutes_count(@sunday4)
 	end
 
 	def get_missed_case_count(date)
 		Log.where("date = ?", date).where("case_type = ?", "4").count
+	end
+
+	def get_missed_case_count_sum_5
+		get_missed_case_count(@sunday1) + get_missed_case_count(@sunday2) + get_missed_case_count(@sunday3) + get_missed_case_count(@sunday4) + get_missed_case_count(@sunday5)
+	end
+
+	def get_missed_case_count_sum_4
+		get_missed_case_count(@sunday1) + get_missed_case_count(@sunday2) + get_missed_case_count(@sunday3) + get_missed_case_count(@sunday4)
 	end
 
 end

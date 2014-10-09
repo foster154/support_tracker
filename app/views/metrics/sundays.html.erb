@@ -88,54 +88,21 @@
 			<td class="emphasis"><%= get_missed_case_count(sunday) %></td>
 		</tr>
 		<% end %>
-<!-- 		<tr class="highlight">
-			<th>Total</th>
-			<th><%= time_range_case_count_sum("06:00:00", "06:29:59") %></th>
-			<th><%= time_range_case_count_sum("06:30:00", "06:59:59") %></th>
-			<th><%= time_range_case_count_sum("07:00:00", "07:29:59") %></th>
-			<th><%= time_range_case_count_sum("07:30:00", "07:59:59") %></th>
-			<th><%= time_range_case_count_sum("08:00:00", "08:29:59") %></th>
-			<th><%= time_range_case_count_sum("08:30:00", "08:59:59") %></th>
-			<th><%= time_range_case_count_sum("09:00:00", "09:29:59") %></th>
-			<th><%= time_range_case_count_sum("09:30:00", "09:59:59") %></th>
-			<th><%= time_range_case_count_sum("10:00:00", "10:29:59") %></th>
-			<th><%= time_range_case_count_sum("10:30:00", "10:59:59") %></th>
-			<th><%= time_range_case_count_sum("11:00:00", "11:29:59") %></th>
-			<th><%= time_range_case_count_sum("11:30:00", "11:59:59") %></th>
-			<th><%= time_range_case_count_sum("12:00:00", "23:59:59") %></th>
-			<th><%= get_sunday_case_count_sum(@sunday1, @sunday2, @sunday3, @sunday4) %></th>
-			<th><%= get_sunday_minutes_count_sum(@sunday1, @sunday2, @sunday3, @sunday4) %></th>
-		</tr> -->
-		
-<!-- 		<% if @date.to_date.strftime("%b") != Date.today.strftime("%b") %>
-		<tr class="highlight">
-			<th>Average</th>
-			<th><%= time_range_case_count_average("06:00:00", "06:29:59") %></th>
-			<th><%= time_range_case_count_average("06:30:00", "06:59:59") %></th>
-			<th><%= time_range_case_count_average("07:00:00", "07:29:59") %></th>
-			<th><%= time_range_case_count_average("07:30:00", "07:59:59") %></th>
-			<th><%= time_range_case_count_average("08:00:00", "08:29:59") %></th>
-			<th><%= time_range_case_count_average("08:30:00", "08:59:59") %></th>
-			<th><%= time_range_case_count_average("09:00:00", "09:29:59") %></th>
-			<th><%= time_range_case_count_average("09:30:00", "09:59:59") %></th>
-			<th><%= time_range_case_count_average("10:00:00", "10:29:59") %></th>
-			<th><%= time_range_case_count_average("10:30:00", "10:59:59") %></th>
-			<th><%= time_range_case_count_average("11:00:00", "11:29:59") %></th>
-			<th><%= time_range_case_count_average("11:30:00", "11:59:59") %></th>
-			<th><%= time_range_case_count_average("12:00:00", "23:59:59") %></th>
-			<th><%= (get_sunday_case_count_sum(@sunday1, @sunday2, @sunday3, @sunday4))/4.0 %></th>
-			<th><%= (get_sunday_minutes_count_sum(@sunday1, @sunday2, @sunday3, @sunday4))/4.0 %></th>
-		</tr>
-		<% end %> -->
 	</tbody>
 </table>
 
 <ul class="sunday-monthlies">
-	<li>Total cases: </li>
-	<li>Cases per Sunday: </li>
-	<li>Total minutes: </li>
-	<li>Minutes per case: </li>
-	<li>Missed calls per Sunday: </li>
+	<% if @number_of_sundays == 4 %>
+		<li>Cases per Sunday: <span><%= get_sunday_case_count_sum_4 / @number_of_sundays.to_f %></span></li>
+		<li>Minutes per Sunday: <span><%= get_sunday_minutes_count_sum_4 / @number_of_sundays %></span></li>
+		<li>Minutes per case: <span><%= get_sunday_minutes_count_sum_4 / get_sunday_case_count_sum_4 %></span></li>
+		<li>Missed calls per Sunday: <span><%= get_missed_case_count_sum_4 / @number_of_sundays %></span></li>
+	<% else %>
+		<li>Cases per Sunday: <span><%= get_sunday_case_count_sum_5 / @number_of_sundays.to_f %></span></li>
+		<li>Minutes per Sunday: <span><%= get_sunday_minutes_count_sum_5 / @number_of_sundays %></span></li>
+		<li>Minutes per case: <span><%= get_sunday_minutes_count_sum_5 / get_sunday_case_count_sum_5 %></span></li>
+		<li>Missed calls per Sunday: <span><%= get_missed_case_count_sum_5 / @number_of_sundays %></span></li>
+	<% end %>
 </ul>
 
 </div>

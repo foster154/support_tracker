@@ -21,9 +21,11 @@ class MetricsController < ApplicationController
 		@sunday4 = @sunday3.advance(days: 7)
 		@sunday5 = @sunday4.advance(days: 7)
 
-		if @sunday5.to_date.strftime("%b") == @date.to_date.strftime("%b")
+		if @sunday5.to_date.strftime("%b") == @sunday1.to_date.strftime("%b")
+			@number_of_sundays = 5
 			@sundays = [ @sunday1, @sunday2, @sunday3, @sunday4, @sunday5 ]
 		else
+			@number_of_sundays = 4
 			@sundays = [ @sunday1, @sunday2, @sunday3, @sunday4 ]
 		end
 	end
