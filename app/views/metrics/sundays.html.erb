@@ -90,7 +90,7 @@
 		<% end %>
 	</tbody>
 </table>
-
+<% if @date.to_date.strftime("%b") != Date.today.to_date.strftime("%b") # don't show monthly stats until month is over %>
 <ul class="sunday-monthlies">
 	<% if @number_of_sundays == 4 %>
 		<li>Cases per Sunday: <span><%= (get_sunday_case_count_sum_4 / @number_of_sundays.to_f).round(1) %></span></li>
@@ -104,6 +104,7 @@
 		<li>Missed calls per Sunday: <span><%= (get_missed_case_count_sum_5 / @number_of_sundays.to_f).round(2) %></span></li>
 	<% end %>
 </ul>
+<% end %>
 
 </div>
 </div>

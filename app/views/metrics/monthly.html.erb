@@ -50,6 +50,7 @@
 				<th>Thursday</th>
 				<th>Friday</th>
 				<th>Saturday</th>
+				<th class="totals-col-header">(Mon-Fri Totals)</th>
 			</tr>
 		</thead>
 
@@ -75,6 +76,11 @@
 					<% end %>
 				</td>
 				<% end %>
+				<td class="totals-col">
+					<%= get_case_count_sum(@week1[1], @week1[2], @week1[3], @week1[4], @week1[5]) %>
+					<br />
+					<span>(<%= get_minutes_count_sum(@week1[1], @week1[2], @week1[3], @week1[4], @week1[5]) %> min)</span>
+				</td>
 			</tr>
 
 			<!-- WEEK 2 -->
@@ -98,6 +104,10 @@
 					<% end %>
 				</td>
 				<% end %>
+				<td class="totals-col"><%= get_case_count_sum(@week2[1], @week2[2], @week2[3], @week2[4], @week2[5]) %>
+					<br />
+					<span>(<%= get_minutes_count_sum(@week2[1], @week2[2], @week2[3], @week2[4], @week2[5]) %> min)</span>
+				</td>
 			</tr>
 
 			<!-- WEEK 3 -->
@@ -121,6 +131,10 @@
 					<% end %>
 				</td>
 				<% end %>
+				<td class="totals-col"><%= get_case_count_sum(@week3[1], @week3[2], @week3[3], @week3[4], @week3[5]) %>
+					<br />
+					<span>(<%= get_minutes_count_sum(@week3[1], @week3[2], @week3[3], @week3[4], @week3[5]) %> min)</span>
+				</td>
 			</tr>
 
 			<!-- WEEK 4 -->
@@ -144,6 +158,10 @@
 					<% end %>
 				</td>
 				<% end %>
+				<td class="totals-col"><%= get_case_count_sum(@week4[1], @week4[2], @week4[3], @week4[4], @week4[5]) %>
+					<br />
+					<span>(<%= get_minutes_count_sum(@week4[1], @week4[2], @week4[3], @week4[4], @week4[5]) %> min)</span>
+				</td>
 			</tr>
 
 			<!-- WEEK 5 -->
@@ -167,6 +185,10 @@
 					<% end %>
 				</td>
 				<% end %>
+				<td class="totals-col"><%= get_case_count_sum(@week5[1], @week5[2], @week5[3], @week5[4], @week5[5]) %>
+					<br />
+					<span>(<%= get_minutes_count_sum(@week5[1], @week5[2], @week5[3], @week5[4], @week5[5]) %> min)</span>
+				</td>
 			</tr>
 
 			<!-- WEEK 6 -->
@@ -190,6 +212,10 @@
 					<% end %>
 				</td>
 				<% end %>
+				<td class="totals-col"><%= get_case_count_sum(@week6[1], @week6[2], @week6[3], @week6[4], @week6[5]) %>
+					<br />
+					<span>(<%= get_minutes_count_sum(@week6[1], @week6[2], @week6[3], @week6[4], @week6[5]) %> min)</span>
+				</td>
 			</tr>
 
 		</tbody>
