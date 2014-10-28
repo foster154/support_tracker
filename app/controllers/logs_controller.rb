@@ -38,24 +38,37 @@ class LogsController < ApplicationController
   def create
     @log = Log.new(log_params)
 
-    if @log.save
-      redirect_to logs_path, notice: 'Log was successfully created.'
-    else
-      format.html { render action: 'new' }
-      format.json { render json: @log.errors, status: :unprocessable_entity }
+    if params[:commit] == 'Save & Close'
+      if @log.save
+        redirect_to logs_path, notice: 'Log was successfully created.'
+      else
+        render action: 'new'
+        render json: @log.errors, status: :unprocessable_entity
+      end
+    elsif params[:commit] == 'Save'
+      if @log.save
+        redirect_to edit_log_path(@log.id), notice: 'Log was successfully created.'
+      else
+        render action: 'new'
+        render json: @log.errors, status: :unprocessable_entity
+      end
     end
   end
 
   # PATCH/PUT /logs/1
   # PATCH/PUT /logs/1.json
   def update
-    respond_to do |format|
+    if params[:commit] == 'Save & Close'
       if @log.update(log_params)
-        format.html { redirect_to action: "index", notice: 'Log was successfully updated.' }
-        format.json { head :no_content }
+        redirect_to action: "index", notice: 'Log was successfully updated.'
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @log.errors, status: :unprocessable_entity }
+        render action: 'edit'
+      end
+    elsif params[:commit] == 'Save'
+      if @log.update(log_params)
+        redirect_to edit_log_path(@log.id), notice: 'Log was successfully updated.'
+      else
+        render action: 'edit'
       end
     end
   end

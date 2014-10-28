@@ -38,6 +38,7 @@ gem 'bootstrap_form', '2.1.0'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'chosen-rails'
+gem 'font-awesome-rails'
 
 group :development do
 	gem 'better_errors'

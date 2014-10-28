@@ -1,8 +1,6 @@
 @import "bootstrap";
+@import "variables";
 
-/* Variables */
-
-$grayLight: #777;
 
 /* universal */
 
@@ -72,11 +70,11 @@ h3 {
 	font-family: 'Lato', sans-serif;
 	font-weight: 300;
 	clear: both;
-	color: $grayLight;
+	color: $gray;
 }
 
 .grey {
-  color: $grayLight;
+  color: $gray;
 }
 
 /* Header */
@@ -158,6 +156,12 @@ input, textarea, select, .uneditable-input {
 	clear: both;
 }
 
+.form-submit-btns {
+	span {
+		color: $gray;
+	}
+}
+
 /* Tables */
 
 .table .highlight {
@@ -215,7 +219,7 @@ input, textarea, select, .uneditable-input {
 .case-count {
 	clear: both;
 	font-style: italic;
-	color: $grayLight;
+	color: $gray;
 	text-align: center;
 }
 
@@ -289,7 +293,7 @@ input, textarea, select, .uneditable-input {
 		padding: 2px 4px 2px 4px;
 		font-size: 0.8em;
 		color: white;
-		background-color: $grayLight;
+		background-color: $gray;
 		border-radius:4px;
 		display: inline-block;
 		white-space: nowrap;

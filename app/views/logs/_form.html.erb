@@ -55,7 +55,6 @@
   </div>
 
   <div class="col-sm-3 col-sm-offset-1">
-
     <%= f.number_field :length, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
 
     <%= f.select(:user_id, User.all.map {|user| [user.name, user.id]}, layout: :horizontal, prompt: true, label_col: "col-sm-3", control_col: "col-sm-9") %>
@@ -68,7 +67,9 @@
     ], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
 
     <div class="form-submit-btns">
-      <%= f.submit class: "btn btn-primary btn-large btn-spacer" %>
+      <%= f.submit 'Save & Close', class: "btn btn-primary btn-large btn-spacer" %>
+      <%= f.submit 'Save', class: "btn btn-default btn-large btn-spacer" %>
+        
       <%= link_to 'Cancel', logs_path(date: @date), class: "btn btn-xs btn-default btn-spacer" %>
       <% if params[:id] %>
       <%= link_to 'Delete', @log, method: :delete, data: { confirm: 'Are you sure you want to PERMANENTLY delete this case?' }, class: "btn btn-xs btn-danger btn-spacer" %>
