@@ -43,9 +43,6 @@
 
     <div class="float-right">
       <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal">New Customer</a>
-      <% if @log.customer %>
-         | <%= link_to "Edit Customer", edit_customer_url(@log.customer.id), target: "_blank" %>
-      <% end %>
     </div>
 
     <%= f.text_area :description, layout: :default, rows: 6 %>
@@ -65,6 +62,12 @@
       ["CF (Can't find)",  '3'],
       ["- (Not possible)",   '4'],
     ], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
+
+    <% if @log.customer %>
+      <div class="float-right">
+      <%= link_to "Create Note", "https://go.kidcheck.com/admin/customers/default.aspx?id=#{@log.customer.kc_cust_id}", :target => "_blank" %>
+      </div>
+    <% end %>
 
     <div class="form-submit-btns">
       <%= f.submit 'Save & Close', class: "btn btn-primary btn-large btn-spacer" %>
