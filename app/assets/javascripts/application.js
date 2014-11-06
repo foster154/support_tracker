@@ -17,4 +17,5 @@
 //= require jquery.tooltipster.min
 //= require bootstrap-datepicker
 //= require turbolinks
+//= require zeroclipboard
 //= require_tree .

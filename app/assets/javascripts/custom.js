@@ -9,4 +9,5 @@ $(document).ready(function(){
 		autoclose: true
 		});
 
+	var clip = new ZeroClipboard($("#d_clip_button"))
 });

@@ -39,6 +39,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 gem 'chosen-rails'
 gem 'font-awesome-rails'
+gem 'zeroclipboard-rails'
 
 group :development do
 	gem 'better_errors'

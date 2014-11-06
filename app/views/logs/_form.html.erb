@@ -47,6 +47,7 @@
 
     <%= f.text_area :description, layout: :default, rows: 6 %>
 
+
     <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {}, {multiple: true} %>
 
   </div>
@@ -65,11 +66,18 @@
 
     <% if @log.customer %>
       <div class="float-right">
-      <%= link_to "Create Note", "https://go.kidcheck.com/admin/customers/default.aspx?id=#{@log.customer.kc_cust_id}", :target => "_blank" %>
+        <div>
+          <div class='my_clip_button' data-clipboard-target='log-description' data-clipboard-text='<%= "#{ @log.person } - #{ @log.description }" %>' id='d_clip_button' title='Click me to copy to clipboard.'>
+            <i class="fa fa-send"></i>
+          </div>
+          <%= link_to "Create Note", "https://go.kidcheck.com/admin/customers/default.aspx?id=#{@log.customer.kc_cust_id}", :target => "_blank" %>
+        </div>
       </div>
     <% end %>
 
-    <div class="form-submit-btns">
+    <div class="form-spacer"><br /></div>
+
+    <div class="form-submit-btns group">
       <%= f.submit 'Save & Close', class: "btn btn-primary btn-large btn-spacer" %>
       <%= f.submit 'Save', class: "btn btn-default btn-large btn-spacer" %>
         
