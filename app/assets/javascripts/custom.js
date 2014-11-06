@@ -10,4 +10,8 @@ $(document).ready(function(){
 		});
 
 	var clip = new ZeroClipboard($("#d_clip_button"))
+
+	$('#log_description').keyup(function() {
+		$('.my_clip_button').hide()
+	});
 });
