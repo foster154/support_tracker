@@ -19,6 +19,7 @@
 	              			<ul class="dropdown-menu">
 	                			<li><%= link_to "Sundays", metrics_sundays_path %></li>
 				                <li><%= link_to "Monthly", metrics_monthly_path %></li>
+				                <li><%= link_to "Tags", metrics_tags_path %></li>
 				                <% if current_user.admin %>
 				                	<li><%= link_to "By Rep", metrics_weekdays_path %></li>
 				                <% end %>

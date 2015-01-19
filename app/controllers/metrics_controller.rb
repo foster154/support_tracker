@@ -1,8 +1,8 @@
 class MetricsController < ApplicationController
 
-	def weekdays
-		@date = params[:date] || Date.today
+	before_action :set_date
 
+	def weekdays
 		@monday = @date.to_date.beginning_of_week
 		@tuesday = @monday.advance(days: 1)
 		@wednesday = @tuesday.advance(days: 1)
@@ -13,7 +13,6 @@ class MetricsController < ApplicationController
 	end
 
 	def sundays
-		@date = params[:date] || Date.today
 
 		@sunday1 = @date.to_date.beginning_of_month.advance(days: 7).beginning_of_week(:sunday)
 		@sunday2 = @sunday1.advance(days: 7)
@@ -31,7 +30,6 @@ class MetricsController < ApplicationController
 	end
 
 	def monthly
-		@date = params[:date] || Date.today
 
 		# current week
 		@week1day1 = @date.to_date.beginning_of_month.beginning_of_week(:sunday)
@@ -88,7 +86,16 @@ class MetricsController < ApplicationController
 					@week6day1.advance(days: 4), 
 					@week6day1.advance(days: 5), 
 					@week6day1.advance(days: 6) ]
+	end
 
+	def tags
+		@tags = Tag.all.order(:name)
+	end
+
+	private
+
+	def set_date
+		@date = params[:date] || Date.today
 	end
 
 end

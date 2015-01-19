@@ -121,3 +121,21 @@
 		background-color: #FDFFD4;
 	}
 }
+
+// ======= Tags =======
+
+.tag-columns {
+	-moz-column-width: 400px;
+  	-webkit-column-width: 400px;
+  	column-width: 400px;
+}
+
+.metrics-tag-list {
+	display:relative;
+	li {
+		margin:5px;
+		width: 150px;
+		font-size: 14px;
+		font-weight: 300;
+	}
+}
