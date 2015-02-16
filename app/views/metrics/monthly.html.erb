@@ -70,7 +70,7 @@
 					</div>
 					<% if get_case_count(day) > 0 %>
 					<div class="mm-caseinfo">
-						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-casecount"><a href="<%= logs_path(date: day) %>"><%= get_case_count(day) %></a></div>
 						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
 					</div>
 					<% end %>
@@ -98,7 +98,7 @@
 
 					<% if get_case_count(day) > 0 %>
 					<div class="mm-caseinfo">
-						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-casecount"><a href="<%= logs_path(date: day) %>"><%= get_case_count(day) %></a></div>
 						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
 					</div>
 					<% end %>
@@ -125,7 +125,7 @@
 
 					<% if get_case_count(day) > 0 %>
 					<div class="mm-caseinfo">
-						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-casecount"><a href="<%= logs_path(date: day) %>"><%= get_case_count(day) %></a></div>
 						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
 					</div>
 					<% end %>
@@ -152,7 +152,7 @@
 
 					<% if get_case_count(day) > 0 %>
 					<div class="mm-caseinfo">
-						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-casecount"><a href="<%= logs_path(date: day) %>"><%= get_case_count(day) %></a></div>
 						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
 					</div>
 					<% end %>
@@ -179,7 +179,7 @@
 
 					<% if get_case_count(day) > 0 %>
 					<div class="mm-caseinfo">
-						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-casecount"><a href="<%= logs_path(date: day) %>"><%= get_case_count(day) %></a></div>
 						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
 					</div>
 					<% end %>
@@ -206,7 +206,7 @@
 
 					<% if get_case_count(day) > 0 %>
 					<div class="mm-caseinfo">
-						<div class="mm-casecount"><%= get_case_count(day) %></div>
+						<div class="mm-casecount"><a href="<%= logs_path(date: day) %>"><%= get_case_count(day) %></a></div>
 						<div class="mm-mincount">(<%= get_minutes_count(day) %> min)</div>
 					</div>
 					<% end %>
