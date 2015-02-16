@@ -19,7 +19,7 @@
 </div>
 <% end %>
 
-<h3>Tagging Metrics</h3>
+<h3>Tag Metrics</h3>
 
 <div class="wrapper">
 <div class="next-prev-wrapper">
@@ -43,13 +43,56 @@
 </div>
 </div>
 
-<div class="tag-columns ">
+<table class="table table-striped tag-metrics">
+	<thead>
+		<tr>
+			<th>Tag</th>
+			<th class="center"><%= @month_current.strftime("%b") %></th>
+			<th class="center">+/-</th>
+			<th class="center"><%= @month_prev1.strftime("%b") %></th>
+			<th class="center">+/-</th>
+			<th class="center"><%= @month_prev2.strftime("%b") %></th>
+			<th class="center">+/-</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<% @tags.each do |tag| %>
+		<tr>
+			<td>
+				<%= tag.name %>
+			</td>
+			<td class="center">
+				<%= get_tag_count(tag, @month_current) %>
+			</td>
+			<td class="center">
+				<span class="<%= tag_monthly_diff(tag, @month_current, @month_prev1) >= 0 ? "pos" : "neg" %>"><%= tag_monthly_diff(tag, @month_current, @month_prev1) %></span>
+			</td>
+			<td class="center">
+				<%= get_tag_count(tag, @month_prev1) %>
+			</td>
+			<td class="center">	
+				<span class="<%= tag_monthly_diff(tag, @month_prev1, @month_prev2) >= 0 ? "pos" : "neg" %>"><%= tag_monthly_diff(tag, @month_prev1, @month_prev2) %></span>
+			</td>
+			<td class="center">
+				<%= get_tag_count(tag, @month_prev2) %>
+			</td>
+			<td class="center">
+				<span class="<%= tag_monthly_diff(tag, @month_prev2, @month_prev3) >= 0 ? "pos" : "neg" %>"><%= tag_monthly_diff(tag, @month_prev2, @month_prev3) %></span>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+
+<!-- <div class="tag-columns ">
 	<ul class="tags metrics-tag-list">
 	<% @tags.each do |tag| %>
 		<li><%= tag.name %></li><br />
 	<% end %>
 	</ul>
-</div>
+</div> -->
 
 </div>
 </div>

@@ -77,4 +77,14 @@ module MetricsHelper
 		get_missed_case_count(@sunday1) + get_missed_case_count(@sunday2) + get_missed_case_count(@sunday3) + get_missed_case_count(@sunday4)
 	end
 
+	# Tag Metrics
+	def get_tag_count(tag, date)
+		month_start = date.beginning_of_month
+		month_end = date.end_of_month
+		Categorization.where(updated_at: (month_start)..(month_end)).where(tag_id: tag.id).count
+	end
+
+	def tag_monthly_diff(tag, month1, month2)
+		get_tag_count(tag, month1) - get_tag_count(tag, month2)
+	end
 end

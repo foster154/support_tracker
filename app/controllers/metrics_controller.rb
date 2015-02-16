@@ -90,6 +90,10 @@ class MetricsController < ApplicationController
 
 	def tags
 		@tags = Tag.all.order(:name)
+		@month_current = @date.to_date
+		@month_prev1 = @date.to_date.advance(months: -1)
+		@month_prev2 = @date.to_date.advance(months: -2)
+		@month_prev3 = @date.to_date.advance(months: -3)
 	end
 
 	private

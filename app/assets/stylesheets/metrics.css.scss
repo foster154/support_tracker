@@ -127,18 +127,35 @@
 
 // ======= Tags =======
 
-.tag-columns {
-	-moz-column-width: 400px;
-  	-webkit-column-width: 400px;
-  	column-width: 400px;
-}
-
-.metrics-tag-list {
-	display:relative;
-	li {
-		margin:5px;
-		width: 150px;
+table.tag-metrics {
+	margin: 20px auto;
+	width: 600px;
+	font-size: 16px;
+	font-weight: 500;
+	span {
 		font-size: 14px;
-		font-weight: 300;
+		font-weight:300;
+	}
+	.pos {
+		color: #76C0E8;
+	}
+	.neg {
+		color: #FF7068;
 	}
 }
+
+// .tag-columns {
+// 	-moz-column-width: 400px;
+//   	-webkit-column-width: 400px;
+//   	column-width: 400px;
+// }
+
+// .metrics-tag-list {
+// 	display:relative;
+// 	li {
+// 		margin:5px;
+// 		width: 150px;
+// 		font-size: 14px;
+// 		font-weight: 300;
+// 	}
+// }
