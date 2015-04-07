@@ -14,4 +14,5 @@ $(document).ready(function(){
 	$('#log_description').keyup(function() {
 		$('.my_clip_button').hide()
 	});
+
 });

@@ -1,0 +1,55 @@
+<% if log.followup_due_date.blank? %>
+  <tr class="followup-row">
+<% elsif log.followup_due_date.to_date == Date.today %>
+  <tr class="followup-due-row">
+<% elsif log.followup_due_date.to_date < Date.today %>
+  <tr class="followup-past-due-row">
+<% else %>
+  <tr class="followup-row">
+<% end %>
+
+  <% if log.case_type == 4 %>
+    <td class="center highlight-missed-call">
+  <% else %>
+  <td class="center">
+  <% end %>
+    <%= "Phone" if log.case_type == 1 %>
+    <%= "Email" if log.case_type == 2 %>
+    <%= "Chat"  if log.case_type == 3 %>
+    <%= "Missed Call"  if log.case_type == 4 %>
+    <%= "Web Form"  if log.case_type == 5 %>
+    <%= "Social Media"  if log.case_type == 6 %>
+  </td>
+  <td class="col-person"><%= log.person %></td>
+  <td>
+    <% if log.customer %>
+      <%= link_to log.customer.name, customer_path(log.customer) %> 
+      <% if log.customer.kc_cust_id? %>
+        (<%= link_to log.customer.kc_cust_id, "https://go.kidcheck.com/admin/customers/default.aspx?id=#{log.customer.kc_cust_id}", :target => "_blank" %>)
+      <% else %>
+        (<%= link_to "####", "https://go.kidcheck.com/admin/customers/default.aspx", :target => "_blank" %>)
+      <% end %>
+    <% else %>
+      (none)
+    <% end %>
+  </td>
+  <td><%= log.description %></td>
+  <td><%= log.followup_note %></td>
+  <td>
+    <% if log.followup_due_date %>
+      <% if log.followup_due_date.to_date > Date.today %>
+        <i class="glyphicon glyphicon-leaf glyph-lg glyph-green"></i>
+      <% elsif log.followup_due_date.to_date == Date.today %>
+        <i class="glyphicon glyphicon-bell glyph-lg glyph-green"></i>
+      <% elsif log.followup_due_date.to_date < Date.today %>
+        <i class="glyphicon glyphicon-fire glyph-lg glyph-red"></i>
+      <% end %>
+    <% else %>
+      <i class="glyphicon glyphicon-question-sign glyph-lg"></i>
+    <% end %>
+  </td>
+  <td class="nowrap">
+    <%= log.followup_due_date ? log.followup_due_date.to_date.strftime("%b %d") : "(none)" %>
+  </td>
+  <td><%= link_to 'Edit', edit_log_path(log, date: @date), class: "btn btn-default btn-xs", :'data-no-turbolink' => "true" %></td>
+</tr>

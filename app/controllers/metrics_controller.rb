@@ -89,7 +89,7 @@ class MetricsController < ApplicationController
 	end
 
 	def tags
-		@tags = Tag.all.order(:name)
+		@tags = Tag.all.order(params[:sort])
 		@month_current = @date.to_date
 		@month_prev1 = @date.to_date.advance(months: -1)
 		@month_prev2 = @date.to_date.advance(months: -2)

@@ -45,14 +45,36 @@
 	</div>
 
 <br />
+
+<table class="table followups-table">
+
+	<tbody>
+
+	  	<% @followups_w_date.each do |log| %>
+
+	  		<%= render 'logs/partials/followup_table_row', log: log %>
+
+	  	<% end %>
+	  	
+	  	<% @followups_no_date.each do |log| %>
+
+	  		<%= render 'logs/partials/followup_table_row', log: log %>
+
+	  	<% end %>
+
+	 </tbody>
+
+</table>
+
 <table class="table table-striped">
 
   <%= render 'logs/partials/log_table_header' %>
 
   <tbody>
+
     <% @logs.each do |log| %>
       
-      <%= render 'logs/partials/log_table_row', log: log %>
+    	<%= render 'logs/partials/log_table_row', log: log %>
 
     <% end %>
   </tbody>

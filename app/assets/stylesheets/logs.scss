@@ -1,3 +1,5 @@
+@import "variables";
+
 .my_clip_button {
 	display: inline;
 	margin-right: 8px;
@@ -12,3 +14,19 @@
 .zeroclipboard-is-active {
 	color: #254E71;
 }
+
+.followups-table {
+	max-width: 80%;
+	margin: 0 auto 20px;
+	.followup-due-row {
+		background-color: #DFF2DF;
+	}
+	.followup-past-due-row {
+		background-color: #ffb0b0;
+	}
+	.followup-row{
+		background-color: #FFF4EC;
+	}
+}
+
+

@@ -7,6 +7,8 @@ class LogsController < ApplicationController
   def index
     @date = params[:date] || Date.today
     @logs = Log.where("date = ?", @date).order('time DESC')
+    @followups_w_date = Log.where(user_id: current_user.id, followup: 2).where("followup_due_date <= ?", Date.today).order('followup_due_date ASC')
+    @followups_no_date = Log.where(user_id: current_user.id, followup: 2, followup_due_date: nil)
     @total_time = Log.where("date = ?", @date).sum :length
   end
 
