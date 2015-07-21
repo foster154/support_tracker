@@ -1,0 +1,65 @@
+@import "variables";
+
+//
+//	Logs#index
+//
+
+.new-case-buttons-wrapper {
+	display: block;
+	width: 320px;
+	margin: 10px auto 30px auto;
+	.btn-round-sm {
+		margin: 13px 3px 0;
+	}
+}
+
+.followups-table {
+	clear: both;
+	display: block;
+	max-width: 80%;
+	margin: 100px auto 20px;
+	.followup-due-row {
+		background-color: #DFF2DF;
+	}
+	.followup-past-due-row {
+		background-color: #ffb0b0;
+	}
+	.followup-row{
+		background-color: #FFF4EC;
+	}
+}
+
+//
+//  Logs form
+//
+
+#log_time {
+	margin-top: 1px;
+}
+
+.new-customer-btn {
+	padding: 5px 5px 0 0;
+}
+
+.followup-area {
+	display: none;
+}
+
+#log_followup_due_date {
+	margin-top: 6px;
+}
+
+.my_clip_button {
+	display: inline;
+	margin-right: 8px;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.zeroclipboard-is-hover {
+	color: #428bca;
+}
+
+.zeroclipboard-is-active {
+	color: #254E71;
+}

@@ -2,7 +2,7 @@
 
 <div class="date-select">
 <%= form_tag metrics_monthly_path, method: 'get' do %>
-  <%= text_field_tag :date, @date, class: "date-select-icon" %>
+  <%= text_field_tag :date, @date, class: "datepicker" %>
   <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
 <% end %>
 </div>

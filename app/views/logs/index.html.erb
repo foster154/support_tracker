@@ -1,87 +1,82 @@
 <% provide(:title, 'Cases') %>
 <div class="row">
-<div class="col-sm-10 col-sm-offset-1">
+  <div class="col-sm-10 col-sm-offset-1">
 
-<div class="date-select">
-<%= form_tag logs_path, method: 'get' do %>
-  <%= text_field_tag :date, @date, class: "date-select-icon" %>
-  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
-<% end %>
-</div>
+    <!-- 'Go To Date' Selector -->
 
-<% unless @date.to_date == Date.today %> 
-<div class="today-btn">
-	<%= form_tag logs_path, method: 'get' do %>
-	  <%= hidden_field_tag :date, Date.today %>
-	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
-	<% end %>
-</div>
-<% end %>
+    <div class="date-select">
+      <%= form_tag logs_path, method: 'get' do %>
+        <%= text_field_tag :date, @date, class: "datepicker" %>
+        <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
+      <% end %>
+    </div>
 
-<%= link_to 'New Case', new_log_path(date: @date), class: "btn btn-primary btn-lg center float-left top-pad50", :'data-no-turbolink' => "true" %>
-
-<div class="wrapper">
-<div class="next-prev-wrapper">
-	<div class="prev-btn">
-		<%= form_tag logs_path, method: 'get' do %>
-		  <%= hidden_field_tag :date, @date.to_date.yesterday %>
-		  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
-		<% end %>
-	</div>
-	<div class="next-prev-title"><%= @date.to_date.strftime("%A - %b %d, %Y") %></div>
-	<% if @date.to_date != Date.today %>
-	<div class="next-btn">
-		<%= form_tag logs_path, method: 'get' do %>
-		  <%= hidden_field_tag :date, @date.to_date.tomorrow %>
-		  <%= submit_tag ">", name: nil, class: "transparent-btn" %>
-		<% end %>
-	</div>
-	<% end %>
-</div>
-</div>
-
-	<div class="case-count">
-  		<%= @logs.count %> cases, <%= @total_time %> minutes
-	</div>
-
-<br />
-
-<table class="table followups-table">
-
-	<tbody>
-
-	  	<% @followups_w_date.each do |log| %>
-
-	  		<%= render 'logs/partials/followup_table_row', log: log %>
-
-	  	<% end %>
-	  	
-	  	<% @followups_no_date.each do |log| %>
-
-	  		<%= render 'logs/partials/followup_table_row', log: log %>
-
-	  	<% end %>
-
-	 </tbody>
-
-</table>
-
-<table class="table table-striped">
-
-  <%= render 'logs/partials/log_table_header' %>
-
-  <tbody>
-
-    <% @logs.each do |log| %>
-      
-    	<%= render 'logs/partials/log_table_row', log: log %>
-
+    <% unless @date.to_date == Date.today %> 
+      <div class="today-btn">
+      	<%= form_tag logs_path, method: 'get' do %>
+      	  <%= hidden_field_tag :date, Date.today %>
+      	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
+      	<% end %>
+      </div>
     <% end %>
-  </tbody>
-</table>
 
+    <!-- Followups Table -->
 
-    
-</div>
+    <table class="table followups-table">
+      <tbody>
+
+        <% @followups_w_date.each do |log| %>
+          <%= render 'logs/partials/followup_table_row', log: log %>
+        <% end %>
+        
+        <% @followups_no_date.each do |log| %>
+          <%= render 'logs/partials/followup_table_row', log: log %>
+        <% end %>
+
+      </tbody>
+    </table>
+
+    <!-- Date & Case Count Area -->
+
+    <div class="wrapper">
+      <div class="next-prev-wrapper">
+      	<div class="prev-btn">
+      		<%= form_tag logs_path, method: 'get' do %>
+      		  <%= hidden_field_tag :date, @date.to_date.yesterday %>
+      		  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
+      		<% end %>
+      	</div>
+      	<div class="next-prev-title"><%= @date.to_date.strftime("%A - %b %d, %Y") %></div>
+      	<% if @date.to_date != Date.today %>
+        	<div class="next-btn">
+        		<%= form_tag logs_path, method: 'get' do %>
+        		  <%= hidden_field_tag :date, @date.to_date.tomorrow %>
+        		  <%= submit_tag ">", name: nil, class: "transparent-btn" %>
+        		<% end %>
+        	</div>
+      	<% end %>
+      </div>
+    </div>
+
+  	<div class="case-count">
+    		<%= @logs.count %> cases, <%= @total_time %> minutes
+  	</div>
+
+    <br />
+
+    <!-- New Case Buttons -->
+
+    <div class="new-case-buttons-wrapper">
+      <%= link_to '<i class="fa fa-envelope"></i>'.html_safe, new_log_path(date: @date, case_type: 2), class: "btn-round-sm float-left", :'data-no-turbolink' => "true" %>
+      <%= link_to '<i class="fa fa-comment"></i>'.html_safe, new_log_path(date: @date, case_type: 3), class: "btn-round-sm float-left", :'data-no-turbolink' => "true" %>
+      <%= link_to '<i class="fa fa-list-alt"></i>'.html_safe, new_log_path(date: @date, case_type: 5), class: "btn-round-sm float-right", :'data-no-turbolink' => "true" %>
+      <%= link_to '<i class="fa fa-exclamation-triangle"></i>'.html_safe, new_log_path(date: @date, case_type: 7), class: "btn-round-sm float-right", :'data-no-turbolink' => "true" %>
+      <%= link_to '<i class="fa fa-phone"></i>'.html_safe, new_log_path(date: @date, case_type: 1), class: "btn-round-lg", :'data-no-turbolink' => "true" %>
+    </div>
+
+    <!-- Logs Table -->
+    <%= render 'logs/partials/logs_table' %>
+
+  </div>
 </div>
 

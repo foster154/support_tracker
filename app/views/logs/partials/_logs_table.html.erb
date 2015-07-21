@@ -1,0 +1,10 @@
+<!-- Logs Table -->
+
+<table class="table table-striped">
+  <%= render 'logs/partials/log_table_header' %>
+  <tbody>
+    <% @logs.each do |log| %>
+    	<%= render 'logs/partials/log_table_row', log: log %>
+    <% end %>
+  </tbody>
+</table>

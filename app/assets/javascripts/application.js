@@ -13,6 +13,10 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require bootstrap
+//= require bootstrap-editable
+//= require bootstrap-editable-rails
+//= require select2
 //= require chosen-jquery
 //= require jquery.tooltipster.min
 //= require bootstrap-datepicker

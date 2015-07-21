@@ -1,5 +1,7 @@
 <tr>
-  <td class="center"><%= log.time.strftime("%I:%M %p") %></td>
+  <td class="center">
+    <%= log.time.strftime("%I:%M %p") %>
+  </td>
 
   <% if log.case_type == 4 %>
     <td class="center highlight-missed-call">
@@ -12,6 +14,7 @@
     <%= "Missed Call"  if log.case_type == 4 %>
     <%= "Web Form"  if log.case_type == 5 %>
     <%= "Social Media"  if log.case_type == 6 %>
+    <%= "Error Form"  if log.case_type == 7 %>
   </td>
   <td class="col-person"><%= log.person %></td>
   <td>
@@ -26,8 +29,12 @@
       (none)
     <% end %>
   </td>
-  <td><%= log.description %></td>
-  <td class="center"><%= log.length %></td>
+  <td>
+    <%= textarea_format(log.description) %>
+  </td>
+  <td class="center">
+    <%= log.length %>
+  </td>
   <td>
     <% log.tags.any? %>
       <ul class="tags">

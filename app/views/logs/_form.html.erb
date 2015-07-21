@@ -1,7 +1,8 @@
-
 <div class="row">
   <div class="col-sm-offset-4">
-  <%= bootstrap_form_for(@log, date: @date, layout: :default) do |f| %>
+
+  <%= bootstrap_form_for(@log, date: @date, layout: :horizontal, label_col: "col-xs-0", control_col: "col-xs-12") do |f| %>
+
     <% if @log.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@log.errors.count, "error") %> prohibited this log from being saved:</h2>
@@ -13,14 +14,26 @@
         </ul>
       </div>
     <% end %>
+
   </div>
 </div>
 
 <div class="row">
-  <div class="col-sm-3">
-    <%= f.text_field :date, layout: :horizontal, id: "case_date", class: "datepicker", value: @set_date, required: true %>
 
-    <%= f.text_field :time, layout: :horizontal, value: @set_time, required: true %>
+<!-- Column 1: User, Date, Time, Case Type -->
+
+  <div class="col-sm-3">
+
+    <%= f.select(:user_id, User.all.map {|user| [user.name, user.id]}, hide_label: true, selected: @log.user_id || current_user.id) %>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.text_field :date, id: "case_date", class: "datepicker", value: @set_date, required: true, hide_label: true, placeholder: "Date" %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.text_field :time, value: @set_time, required: true, hide_label: true, placeholder: "Time" %>
+      </div>
+    </div>
   
     <%= f.select :case_type, [
       ['Phone',        '1'],
@@ -29,40 +42,48 @@
       ['Missed Call',  '4'],
       ['Web Form',     '5'],
       ['Social Media', '6'],
-    ], label: "Type", layout: :horizontal%>
+      ['Error Form',   '7'],
+    ], hide_label: true, :selected => params[:case_type] %>
   </div>
+
+  <!-- Column 2: Person, Organization, Description -->
 
   <div class="col-sm-3 col-sm-offset-1">
 
-    <%= f.text_field :person, layout: :default, autofocus: true %>
+    <%= f.text_field :person, autofocus: true, hide_label: true, placeholder: "Person", label_col: "col-xs-0", control_col: "col-xs-12" %>
 
-    <%= f.select :customer_id,
-      @customerlist,
-      { include_blank: true }
-    %>
-
-    <div class="float-right">
-      <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal">New Customer</a>
+    <div class="row">
+      <div class="col-xs-10">
+        <%= f.select :customer_id, @customerlist, { include_blank: true, hide_label: true, label_col: "col-xs-0", control_col: "col-xs-12" } %>
+      </div>
+      <div class="col-xs-2">
+        <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal"><span class="fa fa-user-plus new-customer-btn"></span></a>
+      </div>
     </div>
 
-    <%= f.text_area :description, layout: :default, rows: 6 %>
-
-
-    <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {}, {multiple: true} %>
+    <%= f.text_area :description, layout: :horizontal, rows: 5, hide_label: true, placeholder: "Description", label_col: "col-xs-0", control_col: "col-xs-12" %>
 
   </div>
 
+  <!-- Column 3: Tags, Length, Case Note, Save, Followup -->
+
   <div class="col-sm-3 col-sm-offset-1">
-    <%= f.number_field :length, layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
 
-    <%= f.select(:user_id, User.all.map {|user| [user.name, user.id]}, layout: :horizontal, prompt: true, label_col: "col-sm-3", control_col: "col-sm-9") %>
+    <%= f.collection_select :tag_ids, Tag.order(:name), :id, :name, {hide_label: true}, {multiple: true} %>
 
-    <%= f.select :app_note, [
-      ["NY (Not yet)",  '2'],
-      ["Y (Yes)",   '1'],
-      ["CF (Can't find)",  '3'],
-      ["- (Not possible)",   '4'],
-    ], layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9"  %>
+    <div class="row">
+      <div class="col-xs-6">
+        <%= f.number_field :length, hide_label: true, placeholder: "Length" %>
+      </div>
+      <div class="col-xs-6">
+        <%= f.select :app_note, [
+          ["NY (Not yet)",  '2'],
+          ["Y (Yes)",   '1'],
+          ["CF (Can't find)",  '3'],
+          ["- (Not possible)",   '4'],
+        ], hide_label: true %>
+      </div>
+    </div>
 
     <% if @log.customer %>
       <div class="float-right">
@@ -77,6 +98,8 @@
 
     <div class="form-spacer"><br /></div>
 
+    <!-- Submit Buttons -->
+
     <div class="form-submit-btns group">
       <%= f.submit 'Save & Close', class: "btn btn-primary btn-large btn-spacer" %>
       <%= f.submit 'Save', class: "btn btn-default btn-large btn-spacer" %>
@@ -87,28 +110,47 @@
       <% end %>
     </div>
 
-    <div class="form-spacer"><br /></div>
+    <!-- Followup Area -->
 
-    <%= f.select :followup, [
-      ['-', '1'],
-      ['Yes', '2'],
-      ['Complete',  '3'],
-    ], label: "Followup", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
+    <div class="center"><a id="show-followup" href="#">Followup Note</a></div>
 
-    <%= f.text_area :followup_note, label: "Followup Note", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
+    <br><br>
 
-    <%= f.text_field :followup_due_date, class: "datepicker", label: "Due Date", layout: :horizontal, label_col: "col-sm-3", control_col: "col-sm-9" %>
+    <div class="followup-area">
+      <div class="row">
+        <div class="col-xs-6">
+          <%= f.select :followup, [
+            ['-', '1'],
+            ['Yes', '2'],
+            ['Complete',  '3'],
+          ], hide_label: true %>
+        </div>
+        <div class="col-xs-6">
+          <%= f.text_field :followup_due_date, class: "datepicker", hide_label: true, placeholder: "FU Date" %>
+        </div>
+      </div>
 
+      <%= f.text_area :followup_note, hide_label: true, placeholder: "Followup Note" %>
+
+    </div>
+  </div> <!-- /column3 -->
+</div> <!-- /row -->
+
+<% end # end bootstrap_form_for %>
+
+<div class="row center">
+  <div class="new-case-buttons-wrapper">
+    <%= link_to '<i class="fa fa-envelope"></i>'.html_safe, new_log_path(date: @date, case_type: 2), class: "btn-round-sm float-left", :'data-no-turbolink' => "true", :target => '_blank' %>
+    <%= link_to '<i class="fa fa-comment"></i>'.html_safe, new_log_path(date: @date, case_type: 3), class: "btn-round-sm float-left", :'data-no-turbolink' => "true", :target => '_blank' %>
+    <%= link_to '<i class="fa fa-list-alt"></i>'.html_safe, new_log_path(date: @date, case_type: 5), class: "btn-round-sm float-right", :'data-no-turbolink' => "true", :target => '_blank' %>
+    <%= link_to '<i class="fa fa-exclamation-triangle"></i>'.html_safe, new_log_path(date: @date, case_type: 7), class: "btn-round-sm float-right", :'data-no-turbolink' => "true", :target => '_blank' %>
+    <%= link_to '<i class="fa fa-phone"></i>'.html_safe, new_log_path(date: @date, case_type: 1), class: "btn-round-lg", :'data-no-turbolink' => "true", :target => '_blank' %>
+
+    
   </div>
 </div>
 
-
-<div class="row center">
-    <br />
-      
-    </div>
-<% end %>
-</div>
+<!-- Modal: New Customer -->
 
 <div id="newCustomerModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-remote="/modal/show">
   <div class="modal-dialog modal-sm">
