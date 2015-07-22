@@ -71,35 +71,33 @@ class LogsController < ApplicationController
 
   # PATCH/PUT /logs/1
   # PATCH/PUT /logs/1.json
-  def update
-    @log = Log.find(params[:id])
+  # def update
+  #   @log = Log.find(params[:id])
+    
+  #   if @log.update_attributes(log_params)
+  #     format.html { redirect_to action: "index", notice: 'Log was successfully updated.' }
+  #     format.json { head :no_content } # 204 No Content
+  #   else
+  #     format.html { render action: 'edit' }
+  #     format.json { render json: @post.errors, status: :unprocessable_entity }
+  #   end
+  # end
 
-    respond_to do |format|
-      if @log.update_attributes(log_params)
-        format.html { redirect_to action: "index", notice: 'Log was successfully updated.' }
-        format.json { head :no_content } # 204 No Content
+  def update
+    if params[:commit] == 'Save & Close'
+      if @log.update(log_params)
+        redirect_to action: "index", notice: 'Log was successfully updated.'
       else
-        format.html { render action: 'edit' }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        render action: 'edit'
+      end
+    elsif params[:commit] == 'Save'
+      if @log.update(log_params)
+        redirect_to edit_log_path(@log.id), notice: 'Log was successfully updated.'
+      else
+        render action: 'edit'
       end
     end
   end
-
-  # def update
-  #   if params[:commit] == 'Save & Close'
-  #     if @log.update(log_params)
-  #       redirect_to action: "index", notice: 'Log was successfully updated.'
-  #     else
-  #       render action: 'edit'
-  #     end
-  #   elsif params[:commit] == 'Save'
-  #     if @log.update(log_params)
-  #       redirect_to edit_log_path(@log.id), notice: 'Log was successfully updated.'
-  #     else
-  #       render action: 'edit'
-  #     end
-  #   end
-  # end
 
   # DELETE /logs/1
   # DELETE /logs/1.json
