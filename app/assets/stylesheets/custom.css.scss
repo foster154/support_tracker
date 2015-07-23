@@ -327,33 +327,32 @@ input, textarea, select, .uneditable-input {
 /* Cases table */
 
 .col-time {
-	min-width: 95px;
+	min-width: 80px;
 }
 
-.col-type {
-	min-width: 90px;
-}
+// .col-type {
+// 	min-width: 90px;
+// }
 
 .col-person {
 	white-space: nowrap;
-	min-width: 120px;
 }
 
-.col-length {
-	min-width: 65px;
-}
+// .col-length {
+// 	min-width: 65px;
+// }
 
 .col-tags {
 	min-width: 130px;
 }
 
-.col-rep {
-	min-width: 80px;
-}
+// .col-rep {
+// 	min-width: 80px;
+// }
 
-.col-app-note {
-	min-width: 68px;
-}
+// .col-app-note {
+// 	min-width: 68px;
+// }
 
 .highlight-red {
 	background-color: #FF8A8A;

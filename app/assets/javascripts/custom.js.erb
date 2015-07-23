@@ -1,8 +1,4 @@
 $(document).ready(function(){
-	// $('#date').datepicker({
-	// 	format: 'yyyy-mm-dd',
-	// 	autoclose: true
-	// 	});
 	
 	$('.datepicker').datepicker({
 		format: 'yyyy-mm-dd',
@@ -14,47 +10,5 @@ $(document).ready(function(){
 	$('#log_description').keyup(function() {
 		$('.my_clip_button').hide()
 	});
-
-	$('#log_tag_ids').chosen();
-
-	$('.editable').editable();
-
-	$('.editable-case-type').editable({   
-    source: [
-        {value: 1, text: 'Phone'},
-        {value: 2, text: 'Email'},
-        {value: 3, text: 'Chat'}
-     ]
-  });
-
-  $('.editable-tags').editable({   
-    source: [
-          {id: '3', text: 'Accounting'},
-          {id: '4', text: 'Admin Console'},
-          {id: '5', text: 'Background Checks'}
-       ],
-    select2: {
-       multiple: true
-    }
-  });
-
-  $('.editable-app-note').editable({  
-  	value: 1, 
-      source: [
-            {value: 1, text: 'Y (Complete)'},
-            {value: 2, text: 'NY (Not Yet)'},
-            {value: 3, text: 'CF (Can\'t Find)'},
-            {value: 4, text: '- (Not Possible)'}
-         ]
-  });
-
-  $('.editable').on('hidden', function(e, reason){
-      if(reason === 'save' || reason === 'nochange') {
-          var $next = $(this).closest('td').next().find('.editable');
-              setTimeout(function() {
-                  $next.editable('show');
-              }, 300); 
-      }
- });
 
 });
