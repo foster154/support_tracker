@@ -1,8 +1,192 @@
 @import "variables";
 
-//
-//	Logs#index
-//
+/* =======================
+	LOGS INDEX PAGE
+======================= /*
+
+
+
+/* Cases date on index page */
+.next-prev-wrapper {
+	clear: both;
+	margin: 0 auto 0 auto;
+	display: inline-flex;
+	font-family: 'Lato', sans-serif;
+	font-weight: 900;
+}
+
+.go-to-date-selector {
+	display: none;
+	width: 276px;
+}
+
+/* Set Date for logs/index */
+
+.date-select {
+	float: left;
+	margin:8px 0 0 0;
+	input.datepicker {
+		padding: 18px;
+		font-size: 22px;
+		width: 170px;
+	}
+	input.btn {
+		margin: -42px 0 0 10px;
+	}
+}
+
+.today-btn {
+	float: right;
+	input.btn {
+		margin: -30px 43px 0 5px;
+	}
+}
+
+.close-date-selector {
+	float: right;
+	bottom: 0;
+	margin-left: 20px;
+	cursor: pointer;
+	img {
+		width: 24px;
+		height: 24px;
+	}
+}
+
+.next-prev-title {
+	display: block;
+	font-size: 2.5em;
+	float: left;
+	cursor: pointer;
+}
+
+.prev-btn {
+	float: left;
+	margin: 0 15px 0 0;
+	font-size: 2.5em;
+	color: #428bca;
+}
+
+.next-btn {
+	float: left;
+	margin-left: 15px;
+	font-size: 2.5em;
+	color: #428bca;
+}
+
+.case-count {
+	clear: both;
+	font-style: italic;
+	color: $gray;
+	text-align: center;
+}
+
+/* Cases table */
+
+.logs-table {
+	max-width: 90%;
+}
+
+.col-time {
+	min-width: 80px;
+}
+
+// .col-type {
+// 	min-width: 90px;
+// }
+
+.col-person {
+	white-space: nowrap;
+}
+
+// .col-length {
+// 	min-width: 65px;
+// }
+
+.col-tags {
+	min-width: 130px;
+}
+
+// .col-rep {
+// 	min-width: 80px;
+// }
+
+// .col-app-note {
+// 	min-width: 68px;
+// }
+
+.highlight-red {
+	background-color: #FF8A8A;
+	border-radius: 2px;
+	padding: 3px;
+}
+.highlight-yellow {
+	background-color: #FFF154;
+	border: 1px dashed #858585;
+	border-radius: 4px;
+	width: 21px;
+	padding: 3px 5px;
+	cursor: default;
+	z-index: 1;
+}
+
+.highlight-missed-call {
+	background-color: #A3FFFD !important;
+	border-radius: 2px;
+	padding: 3px;
+}
+
+.tooltipster {
+	opacity: 1;
+}
+
+.tooltipster-punk {
+	border-radius: 5px; 
+	border-bottom: 3px solid #8CC147;
+	background: #2a2a2a;
+	color: #fff;
+}
+.tooltipster-punk .tooltipster-content {
+	font-size: 14px;
+	line-height: 16px;
+	padding: 8px 10px;
+}
+
+/* tags */
+
+.chosen-choices {
+  border: 1px solid #CFCFCF;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 7px 0;
+}
+
+.tags {
+	ul {
+	}
+
+	li {
+		list-style-type: none;
+		margin: 2px 0 2px -40px;
+		padding: 2px 4px 2px 4px;
+		font-size: 0.8em;
+		color: white;
+		background-color: $gray;
+		border-radius:4px;
+		display: inline-block;
+		white-space: nowrap;
+	}
+
+	li:before {
+		background: #fff;
+    	width: 6px;
+    	height: 6px;
+    	content: "";
+    	display: inline-block;
+    	border-radius: 20px;
+    	margin: 0 5px 0 0;
+	}
+}
 
 .new-case-buttons-wrapper {
 	display: block;
@@ -17,7 +201,7 @@
 	clear: both;
 	display: block;
 	max-width: 80%;
-	margin: 100px auto 20px;
+	margin: 40px auto 20px;
 	.followup-due-row {
 		background-color: #DFF2DF;
 	}

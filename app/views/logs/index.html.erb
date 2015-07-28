@@ -2,24 +2,6 @@
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1">
 
-    <!-- 'Go To Date' Selector -->
-
-    <div class="date-select">
-      <%= form_tag logs_path, method: 'get' do %>
-        <%= text_field_tag :date, @date, class: "datepicker" %>
-        <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
-      <% end %>
-    </div>
-
-    <% unless @date.to_date == Date.today %> 
-      <div class="today-btn">
-      	<%= form_tag logs_path, method: 'get' do %>
-      	  <%= hidden_field_tag :date, Date.today %>
-      	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
-      	<% end %>
-      </div>
-    <% end %>
-
     <!-- Followups Table -->
 
     <table class="table followups-table">
@@ -46,7 +28,33 @@
       		  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
       		<% end %>
       	</div>
+
       	<div class="next-prev-title"><%= @date.to_date.strftime("%A - %b %d, %Y") %></div>
+
+        <!-- 'Go To Date' Selector -->
+        <div class="go-to-date-selector">
+          <div class="close-date-selector">
+            <%= image_tag "close-btn.png" %>
+          </div>
+          <!-- Date text box -->
+          <div class="date-select">
+            <%= form_tag logs_path, method: 'get' do %>
+              <%= text_field_tag :date, @date, class: "datepicker" %>
+              <%= submit_tag "Go!", name: nil, class: "btn btn-large btn-primary" %>
+            <% end %>
+          </div>
+
+          <div class="today-btn">
+            <!-- 'Today' link -->
+            <%= form_tag logs_path, method: 'get' do %>
+              <%= hidden_field_tag :date, Date.today %>
+              <%= submit_tag "(Today)", name: nil, class: "btn btn-xs btn-default float-right"  %>
+            <% end %>
+          </div>
+
+
+        </div>
+
       	<% if @date.to_date != Date.today %>
         	<div class="next-btn">
         		<%= form_tag logs_path, method: 'get' do %>

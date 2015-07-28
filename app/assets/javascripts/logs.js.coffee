@@ -9,3 +9,14 @@ jQuery ->
 		$('#newCustomerModal').modal('hide')
 	$('#show-followup').click ->
 		$('.followup-area').slideToggle()
+	
+	$('.next-prev-title').click ->
+		$('.prev-btn').hide()
+		$('.next-prev-title').hide()
+		$('.next-btn').hide()
+		$('.go-to-date-selector').show()
+	$('.close-date-selector').click ->
+		$('.prev-btn').show()
+		$('.next-prev-title').show()
+		$('.next-btn').show()
+		$('.go-to-date-selector').hide()
