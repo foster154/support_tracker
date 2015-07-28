@@ -43,7 +43,7 @@
       ['Web Form',     '5'],
       ['Social Media', '6'],
       ['Error Form',   '7'],
-    ], hide_label: true, :selected => params[:case_type] %>
+    ], hide_label: true, :selected => params[:case_type] || @log.case_type %>
   </div>
 
   <!-- Column 2: Person, Organization, Description -->
