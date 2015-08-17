@@ -82,9 +82,9 @@
       <%= link_to '<i class="fa fa-phone"></i>'.html_safe, new_log_path(date: @date, case_type: 1), class: "btn-round-lg", :'data-no-turbolink' => "true" %>
     </div>
 
-    <!-- Logs Table -->
-    <%= render 'logs/partials/logs_table' %>
-
   </div>
 </div>
+
+<!-- Logs Table -->
+<%= render 'logs/partials/logs_table' %>
 

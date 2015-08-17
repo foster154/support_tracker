@@ -83,37 +83,17 @@
 
 /* Cases table */
 
-.logs-table {
-	max-width: 90%;
-}
-
 .col-time {
 	min-width: 80px;
 }
-
-// .col-type {
-// 	min-width: 90px;
-// }
 
 .col-person {
 	white-space: nowrap;
 }
 
-// .col-length {
-// 	min-width: 65px;
-// }
-
 .col-tags {
 	min-width: 130px;
 }
-
-// .col-rep {
-// 	min-width: 80px;
-// }
-
-// .col-app-note {
-// 	min-width: 68px;
-// }
 
 .highlight-red {
 	background-color: #FF8A8A;
@@ -199,7 +179,6 @@
 
 .followups-table {
 	clear: both;
-	display: block;
 	max-width: 80%;
 	margin: 40px auto 20px;
 	.followup-due-row {
@@ -216,6 +195,11 @@
 //
 //  Logs form
 //
+
+.log-form {
+	padding: 20px;
+	//background-color: #ECFFE6;	
+}
 
 #log_time {
 	margin-top: 1px;
