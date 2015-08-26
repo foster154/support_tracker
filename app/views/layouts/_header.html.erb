@@ -1,36 +1,52 @@
 <nav class="navbar navbar-fixed-top navbar-default">
 	<div class="navbar-inner custom-header">
-		<div class="container">
-			<%= link_to "Support Tracker", root_path, class: "navbar-brand", id: "logo" %>
+		<div class="container-fluid">
+			<% # link_to "Support Tracker", root_path, class: "navbar-brand", id: "logo" %>
+			<%= image_tag("logo.png", id: "logo") %>
 			<nav>
-				<ul class="nav navbar-nav pull-right">
+				<ul class="st-nav nav navbar-nav pull-right">
 					<% if user_signed_in? %>
-						<li><%= link_to "Cases", root_path %></li>
+						<li>	
+							<%= link_to root_path do %>
+								<i class="fa fa-list"></i> Cases
+							<% end %>
+						</li>
 						<li>
-							<%= link_to "Dashboard", user_path(current_user), class: "float-left" %>
+							<%= link_to user_path(current_user), class: "float-left" do %>
+								<i class="fa fa-tachometer"></i> Dashboard
+							<% end %>
 							<% if @followup_count > 0 %>
 								<div class="alert-badge"><%= @followup_count %></div>
 							<% end %>
 						</li>
 						<li id="fat-menu" class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	                		  Metrics <b class="caret"></b>
-	              			</a>
-	              			<ul class="dropdown-menu">
-	                			<li><%= link_to "Sundays", metrics_sundays_path %></li>
-				                <li><%= link_to "Monthly", metrics_monthly_path %></li>
-				                <li><%= link_to "Tags", metrics_tags_path %></li>
-				                <% if current_user.admin %>
-				                	<li><%= link_to "By Rep", metrics_weekdays_path %></li>
-				                <% end %>
-				            </ul>
-			            </li>
-						<li><%= link_to "Customers", customers_path %></li>
-						<li><%= link_to "Tags", tags_path %></li>
-						<li><%= link_to "My Account", edit_user_registration_path %></li>
-						<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
-			        <% else %>
-			        	<li><%= link_to "Login", new_user_session_path %></li>
+	              <i class="fa fa-area-chart"></i>  Metrics <b class="caret"></b>
+	            </a>
+          			<ul class="dropdown-menu">
+            			<li><%= link_to "Sundays", metrics_sundays_path %></li>
+	                <li><%= link_to "Monthly", metrics_monthly_path %></li>
+	                <li><%= link_to "Tags", metrics_tags_path %></li>
+	                <% if current_user.admin %>
+	                	<li><%= link_to "By Rep", metrics_weekdays_path %></li>
+	                <% end %>
+	            </ul>
+			      </li>
+
+			      <li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	              <i class="fa fa-cog"></i>  Account <b class="caret"></b>
+	            </a>
+          			<ul class="dropdown-menu">
+									<li><%= link_to "Customers", customers_path %></li>
+									<li><%= link_to "Tags", tags_path %></li>
+									<li><%= link_to "My Account", edit_user_registration_path %></li>
+									<li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li>
+	            	</ul>
+			      </li>
+
+			    <% else %>
+			      <li><%= link_to "Login", new_user_session_path %></li>
 					<% end %>
 				</ul>
 			</nav>

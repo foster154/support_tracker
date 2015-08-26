@@ -148,32 +148,42 @@ h3 {
   color: $gray;
 }
 
-/* Header */
+/* ===========================
+        Header & Nav 
+=========================== */
 
 .container { height: 5em; }
 
 .custom-header {
-	background-color: #B2D583;
-	border-bottom: 5px solid #8CC147;
+	background-color: $dk-gray;
+	border-bottom: 5px solid rgb(42, 150, 118);
 	vertical-align: middle;
 }
 
 #logo {
-	color: white;
-	font-family: 'Lato', sans-serif;
-	font-weight: 900;
-	font-size: 32px;
-	padding-top: 25px;
+	float: left;
+	margin: 8px;
 }
 
-.nav li {
-		margin-top:10px;
-		font-size: 1.1em;
+.st-nav li {
+	margin-top:14px;
+	font-size: 1em;
+	a {
+		color: white !important;
+		font-weight: 200;
+		letter-spacing: 1.1px;
+	}
+	a:hover {
+		//text-shadow: 1px 1px 2px rgb(42, 150, 118) !important;
+	}
+	i {
+		font-size: 1.2em;
+	}
 }
 
 .alert-badge {
 	position: absolute;
-	margin: 3px 0 0 88px;
+	margin: 3px 0 0 110px;
 	font-size: 10px;
 	text-align: center;
 	color: white;
@@ -182,6 +192,18 @@ h3 {
 	height: 18px;
 	border: 2px solid white;
 	border-radius: 100%;
+}
+
+.navbar-nav > .open > a, 
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus,
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+	background-color: $gray;
+}
+
+.dropdown-menu {
+	background-color: $dk-gray;
 }
 
 /* Buttons */
