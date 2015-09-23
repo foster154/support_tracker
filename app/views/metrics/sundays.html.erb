@@ -3,44 +3,51 @@
 <div class="row">
 <div class="col-sm-10 col-sm-offset-1">
 
-<div class="date-select">
-<%= form_tag metrics_sundays_path, method: 'get' do %>
-  <%= text_field_tag :date, @date, class: "datepicker" %>
-  <%= submit_tag "Set date", name: nil, class: "btn btn-large btn-primary" %>
-<% end %>
-</div>
-
-<% unless @date.to_date == Date.today %> 
-<div class="today-btn">
-	<%= form_tag metrics_sundays_path, method: 'get' do %>
-	  <%= hidden_field_tag :date, Date.today %>
-	  <%= submit_tag "(Today)", name: nil, class: "transparent-btn"  %>
-	<% end %>
-</div>
-<% end %>
-
-<h3>Sunday Metrics</h3>
+<h3 class="mar-top50">Sunday Metrics</h3>
 
 <div class="wrapper">
-<div class="next-prev-wrapper">
-	<div class="prev-btn">
-		<%= form_tag metrics_sundays_path, method: 'get' do %>
-		  <%= hidden_field_tag :date, (@date.to_date - 1.month) %>
-		  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
-		<% end %>
-	</div>
+	<div class="next-prev-wrapper">
+		<div class="prev-btn">
+			<%= form_tag metrics_sundays_path, method: 'get' do %>
+			  <%= hidden_field_tag :date, (@date.to_date - 1.month) %>
+			  <%= submit_tag "<", name: nil, class: "transparent-btn"  %>
+			<% end %>
+		</div>
 
-	<div class="next-prev-title"><%= @date.to_date.strftime("%b %Y") %></div>
-	
-	<% if @date.to_date != Date.today %>
-	<div class="next-btn">
-		<%= form_tag metrics_sundays_path, method: 'get' do %>
-		  <%= hidden_field_tag :date, (@date.to_date + 1.month) %>
-		  <%= submit_tag ">", name: nil, class: "transparent-btn" %>
+		<div class="next-prev-title"><%= @date.to_date.strftime("%b %Y") %></div>
+
+		<!-- 'Go To Date' Selector -->
+	    <div class="go-to-date-selector">
+	      <div class="close-date-selector">
+	        <%= image_tag "close-btn.png" %>
+	      </div>
+	      <!-- Date text box -->
+	      <div class="date-select">
+	        <%= form_tag metrics_sundays_path, method: 'get' do %>
+	          <%= text_field_tag :date, @date, class: "datepicker" %>
+	          <%= submit_tag "Go!", name: nil, class: "btn btn-large btn-primary" %>
+	        <% end %>
+	      </div>
+
+	      <div class="today-btn">
+	        <!-- 'Today' link -->
+	        <%= form_tag metrics_sundays_path, method: 'get' do %>
+	          <%= hidden_field_tag :date, Date.today %>
+	          <%= submit_tag "(Today)", name: nil, class: "btn btn-xs btn-default float-right"  %>
+	        <% end %>
+	      </div>
+	    </div>
+    <!-- End of 'Go To Date' Selector -->
+		
+		<% if @date.to_date != Date.today %>
+		<div class="next-btn">
+			<%= form_tag metrics_sundays_path, method: 'get' do %>
+			  <%= hidden_field_tag :date, (@date.to_date + 1.month) %>
+			  <%= submit_tag ">", name: nil, class: "transparent-btn" %>
+			<% end %>
+		</div>
 		<% end %>
 	</div>
-	<% end %>
-</div>
 </div>
 
 <table class="metrics-sunday">
