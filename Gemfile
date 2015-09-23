@@ -37,11 +37,9 @@ gem 'bootstrap-sass', '3.1.1.0'
 gem 'bootstrap_form', '2.1.0'
 gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
-gem 'chosen-rails'					# remove once Select2 is in place.
+gem 'chosen-rails'								# used for the customer select menu (and elsewhere)
 gem 'font-awesome-rails'
 gem 'zeroclipboard-rails'
-gem 'bootstrap-editable-rails'
-gem 'select2-rails'
 
 group :development do
 	gem 'better_errors'
