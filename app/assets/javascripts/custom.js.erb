@@ -1,3 +1,11 @@
+var kcCustID;
+
+var createKidCheckAppUrl = function(custNumber) {
+	var baseURL = "https://go.kidcheck.com/admin/customers/default.aspx?id="
+	var fullURL = baseURL + custNumber;
+	return fullURL;
+}
+
 $(document).ready(function(){
 	
 	$('.datepicker').datepicker({
@@ -5,6 +13,16 @@ $(document).ready(function(){
 		autoclose: true
 		});
 
+	// Update KidCheck App note link when customer is selected
+	$("#log_customer_id").change(function() {
+		// get the KC customer ID value
+		kcCustID = $(this).find(':selected').data('kc_cust_id');
+		// update the link's href value 
+		$("#kc-app-link").attr("href", createKidCheckAppUrl(kcCustID));
+
+	});
+
+	// For the 'copy to clipboard' functionality
 	var clip = new ZeroClipboard($("#d_clip_button"))
 
 	$('#log_description').keyup(function() {

@@ -24,9 +24,12 @@ class LogsController < ApplicationController
     @date = params[:date] || Date.today
     @logs = Log.where("date = ?", @date).order('time DESC')
     @user = current_user
-    @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
+    @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id, {'data-kc_cust_id'=>u.kc_cust_id}] }
     @set_date = Date.today
     @set_time = Time.zone.now.strftime("%I:%M %p")
+
+    # @customerlist changed on 10/1/15 to add data attribute for using JS to change app note link href. Old code:
+    # @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
   end
 
   # GET /logs/1/edit
@@ -34,8 +37,11 @@ class LogsController < ApplicationController
     @date = params[:date] || Date.today
     @set_time = @log.time.strftime("%I:%M %p")
     @set_date = @log.date.strftime("%F")
-    @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
+    @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id, {'data-kc_cust_id'=>u.kc_cust_id}] }
     @logs = Log.where("date = ?", @date).order('time DESC')
+
+    # @customerlist changed on 10/1/15 to add data attribute for using JS to change app note link href. Old code:
+    # @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id] }
   end
 
   # POST /logs

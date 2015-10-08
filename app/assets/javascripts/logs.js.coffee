@@ -7,7 +7,7 @@ jQuery ->
 	$('#log_customer_id').chosen()
 	$('#modal_create_cust').click ->
 		$('#newCustomerModal').modal('hide')
-	$('#show-followup').click ->
+	$('#show-followup-btn').click ->
 		$('.followup-area').slideToggle()
 	
 	$('.next-prev-title').click ->

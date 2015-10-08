@@ -54,7 +54,10 @@
 
     <div class="row">
       <div class="col-xs-10">
-        <%= f.select :customer_id, @customerlist, { include_blank: true, hide_label: true, label_col: "col-xs-0", control_col: "col-xs-12" } %>
+        <%# OLD  f.select :customer_id, @customerlist, { include_blank: true, hide_label: true, label_col: "col-xs-0", control_col: "col-xs-12" } %>
+        <%= f.select :customer_id, 
+                     @customerlist, 
+                     { include_blank: true, hide_label: true, label_col: "col-xs-0", control_col: "col-xs-12" } %>
       </div>
       <div class="col-xs-2">
         <a data-toggle="modal" data-no-turbolink="true" href="#newCustomerModal"><span class="fa fa-user-plus new-customer-btn"></span></a>
@@ -85,16 +88,22 @@
       </div>
     </div>
 
-    <% if @log.customer %>
+    
       <div class="float-right">
         <div>
-          <div class='my_clip_button' data-clipboard-target='log-description' data-clipboard-text='<%= "#{ @log.person } - #{ @log.description }" %>' id='d_clip_button' title='Click me to copy to clipboard.'>
-            <i class="fa fa-send"></i>
+          <div class='my_clip_button st-icon-btn' data-clipboard-target='log-description' data-clipboard-text='<%= "#{ @log.person } - #{ @log.description }" %>' id='d_clip_button' title='Click me to copy to clipboard.'>
+            <i class="fa fa-send"></i><span>Copy</span>
           </div>
-          <%= link_to "Create Note", "https://go.kidcheck.com/admin/customers/default.aspx?id=#{@log.customer.kc_cust_id}", :target => "_blank" %>
+          <div class="st-icon-btn">
+            <% if @log.customer %>
+              <a href="https://go.kidcheck.com/admin/customers/default.aspx?id=<%= @log.customer.kc_cust_id %>" target="blank" id="kc-app-link"><i class="fa fa-check-square-o"></i><span>Note</span></a>
+            <% else %>
+              <a href="https://go.kidcheck.com/admin/customers/default.aspx" target="blank" id="kc-app-link"><i class="fa fa-check-square-o"></i><span>Note</span></a>
+            <% end %>
+          </div>
         </div>
       </div>
-    <% end %>
+    
 
     <div class="form-spacer"><br /></div>
 
@@ -112,7 +121,15 @@
 
     <!-- Followup Area -->
 
-    <div class="center"><a id="show-followup" href="#">Followup Note</a></div>
+    <a href="#">
+      <div id="show-followup-btn" class="center">
+        <%# if log has a followup, show the alert icon  %>
+        <% if @log.followup == 2 %>
+        <i class="fa fa-exclamation-triangle"></i>
+        <% end %>
+        Followup Note
+      </div>
+    </a>
 
     <br><br>
 

@@ -1,4 +1,9 @@
 $(document).ready(function() {
+
+	//
+	// PRICING CALCULATOR
+	//
+
 	$('#edition').on('click', '.pricing-btn', function() {
 		$(this).addClass('btn-clicked');
 		$(this).siblings().removeClass('btn-clicked');
