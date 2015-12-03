@@ -1,0 +1,73 @@
+var kcCustID;
+
+var createKidCheckAppUrl = function(custNumber) {
+	var baseURL = "https://go.kidcheck.com/admin/customers/default.aspx?id="
+	var fullURL = baseURL + custNumber;
+	return fullURL;
+}
+
+$(document).ready(function(){
+	
+	// Apply the datepicker plugin to date fields
+	$('.datepicker').datepicker({
+		format: 'yyyy-mm-dd',
+		autoclose: true
+		});
+
+	// ================
+	// LOGS#INDEX
+	// ================
+
+	// On logs#index page, toggle to date selection UI
+	$('.next-prev-title').click(function() {
+		$('.prev-btn').hide();
+		$('.next-prev-title').hide();
+		$('.next-btn').hide();
+		$('.go-to-date-selector').show();
+	});
+
+	// On logs#index page, close date selection UI
+	$('.close-date-selector').click(function() {
+		$('.prev-btn').show();
+		$('.next-prev-title').show();
+		$('.next-btn').show();
+		$('.go-to-date-selector').hide();
+	});
+
+	// ================
+	// LOGS#EDIT
+	// ================
+
+	// Apply the Chosen plugin to customer and tag fields
+	$('#log_tag_ids').chosen();
+	$('#log_customer_id').chosen();
+
+	// Hide the new customer modal after you click Create btn
+	$('#modal_create_cust').click(function() {
+		$('#newCustomerModal').modal('hide');
+	});
+
+	// Hide/show the "Followup Note" section
+	$('#show-followup-btn').click(function() {
+		$('.followup-area').slideToggle();
+	});
+
+	// Update KidCheck App note link when customer is selected
+	$("#log_customer_id").change(function() {
+		// get the KC customer ID value
+		kcCustID = $(this).find(':selected').data('kc_cust_id');
+		// update the link's href value 
+		$("#kc-app-link").attr("href", createKidCheckAppUrl(kcCustID));
+	});
+
+	// For the 'copy to clipboard' functionality
+	var clip = new ZeroClipboard($("#d_clip_button"))
+
+	// Since copy contents are pulled from DB, remove copy button if unsaved change is made.
+	$('#log_description').keyup(function() {
+		$('.my_clip_button').hide()
+	});
+
+
+
+});
