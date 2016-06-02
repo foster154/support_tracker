@@ -19,4 +19,7 @@
 //= require bootstrap-datepicker
 //= require turbolinks
 //= require zeroclipboard
+//= require react
+//= require react_ujs
+//= require components
 //= require_tree .

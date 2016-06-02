@@ -41,6 +41,8 @@ gem 'jquery-turbolinks'
 gem 'chosen-rails'								# used for the customer select menu (and elsewhere)
 gem 'font-awesome-rails'
 gem 'zeroclipboard-rails'
+gem 'responders'								# for 'respond_to' rules in API Controllers
+gem 'react-rails'								# add react
 
 group :development do
 	gem 'better_errors'

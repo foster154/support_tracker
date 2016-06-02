@@ -13,6 +13,14 @@ SupportTracker::Application.routes.draw do
   match '/metrics/monthly',     to: 'metrics#monthly',      via: 'get'
   match '/metrics/tags',        to: 'metrics#tags',         via: 'get'
 
+  namespace :api do
+    namespace :v1 do
+      resources :logs, only: [:index]
+    end
+  end
+
+  match '/react',               to: 'logs_new#index',          via: 'get'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
