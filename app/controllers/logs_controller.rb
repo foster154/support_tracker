@@ -35,8 +35,8 @@ class LogsController < ApplicationController
   # GET /logs/1/edit
   def edit
     @date = params[:date] || Date.today
-    @set_time = @log.time.strftime("%I:%M %p")
-    @set_date = @log.date.strftime("%F")
+    @set_time = @log.time != nil ? @log.time.strftime("%I:%M %p") : ""
+    @set_date = @log.date != nil ? @log.date.strftime("%F")       : ""
     @customerlist = Customer.all.order(:name).map { |u| ["#{u.name} - #{u.city}, #{u.state} - #{u.kc_cust_id}", u.id, {'data-kc_cust_id'=>u.kc_cust_id}] }
     @logs = Log.where("date = ?", @date).order('time DESC')
 

@@ -1,6 +1,6 @@
 <tr>
   <td class="center">
-    <%= log.time.strftime("%I:%M %p") %>
+    <%= log.time != nil ? log.time.strftime("%I:%M %p") : "" %>
   </td>
 
   <% if log.case_type == 4 %>
