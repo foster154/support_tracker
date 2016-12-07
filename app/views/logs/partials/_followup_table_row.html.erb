@@ -51,5 +51,10 @@
   <td class="nowrap">
     <%= log.followup_due_date ? log.followup_due_date.to_date.strftime("%b %d") : "(none)" %>
   </td>
-  <td><%= link_to 'Edit', edit_log_path(log, date: @date), class: "btn btn-default btn-xs", :'data-no-turbolink' => "true" %></td>
+  <td class="followup-btns">
+    <%= link_to '<i class="fa fa-pencil"></i> Edit'.html_safe, edit_log_path(log, date: @date), class: "followup-btn", :'data-no-turbolink' => "true" %>
+    <%= link_to '<i class="fa fa-bell-slash"></i> 1d'.html_safe, {:controller => "logs", :action => "snooze1day", :id => log.id}, class: "followup-btn", :'data-no-turbolink' => "true" %>
+    <%= link_to '<i class="fa fa-bell-slash"></i> 1w'.html_safe, {:controller => "logs", :action => "snooze1week", :id => log.id}, class: "followup-btn", :'data-no-turbolink' => "true" %>
+    <%= link_to '<i class="fa fa-check"></i>'.html_safe, {:controller => "logs", :action => "fuComplete", :id => log.id}, class: "followup-btn", :'data-no-turbolink' => "true" %>
+  </td>
 </tr>

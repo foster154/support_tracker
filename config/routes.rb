@@ -4,8 +4,13 @@ SupportTracker::Application.routes.draw do
 
   devise_for :users
   resources :users
+  match '/logs/snooze1day',     to: 'logs#snooze1day',      via: 'get'
+  match '/logs/snooze1week',    to: 'logs#snooze1week',     via: 'get'
+  match '/logs/fuComplete',     to: 'logs#fuComplete',      via: 'get'
   resources :logs
   resources :tags
+  
+  
 
   match '/metrics',             to: 'metrics#weekdays',     via: 'get'
   match '/metrics/weekdays',    to: 'metrics#weekdays',     via: 'get'

@@ -177,18 +177,50 @@
 	}
 }
 
+//
+//  Followups Table
+//
+
 .followups-table {
 	clear: both;
 	max-width: 80%;
 	margin: 40px auto 20px;
 	.followup-due-row {
 		background-color: #DFF2DF;
+		a.followup-btn {
+			color: #61bd67;
+			transition: background-color .2s, color .2s;
+		}
+		a.followup-btn:hover {
+			background-color: #61bd67;
+			color: white;
+		}
 	}
 	.followup-past-due-row {
 		background-color: #ffb0b0;
+		a.followup-btn {
+			color: #e04c4c;
+			transition: background-color .2s, color .2s;
+		}
+		a.followup-btn:hover {
+			background-color: #e04c4c;
+			color: white;
+		}
 	}
 	.followup-row{
 		background-color: #FFF4EC;
+	}
+	
+	a.followup-btn {
+		display: inline-block;
+		margin: 2px 3px;
+		padding: 1px 3px;
+		border-radius: 3px;
+	}
+	
+	a.followup-btn:hover,
+	a.followup-btn:active {
+		text-decoration: none;
 	}
 }
 

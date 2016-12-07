@@ -114,6 +114,24 @@ class LogsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def snooze1day
+    log = Log.find(params[:id])
+    log.update_attribute(:followup_due_date, log.followup_due_date + 1)
+    redirect_to logs_path, notice: 'Followup due date snoozed by 1 day.'
+  end
+  
+  def snooze1week
+    log = Log.find(params[:id])
+    log.update_attribute(:followup_due_date, log.followup_due_date + 7)
+    redirect_to logs_path, notice: 'Followup due date snoozed by 1 week.'
+  end
+  
+  def fuComplete
+    log = Log.find(params[:id])
+    log.update_attribute(:followup, 3)
+    redirect_to logs_path, notice: 'Followup marked as complete.'
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
