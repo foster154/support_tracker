@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :followup_count
 
+  before_action :configure_permitted_parameters, if: :devise_controller?
+
 	def followup_count
 		if current_user
 			needs_immediate_followup = Log.where(followup: 2,
@@ -16,4 +18,10 @@ class ApplicationController < ActionController::Base
 			@followup_count = needs_immediate_followup + followup_date_not_set
 		end
 	end
+
+  protected
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) << :name
+    end
 end
